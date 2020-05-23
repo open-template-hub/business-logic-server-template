@@ -1,0 +1,4 @@
+# Env Variables
+PORT=
+MONGO_DB_PATH=
+ACCESS_TOKEN_SECRET=
