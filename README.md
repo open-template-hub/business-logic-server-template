@@ -1,4 +1,6 @@
 # Env Variables
-PORT=
-MONGO_DB_PATH=
-ACCESS_TOKEN_SECRET=
+```sh
+PORT={Server Port}
+MONGO_DB_PATH={MongoDB Connection String}
+ACCESS_TOKEN_SECRET={Access Token Secret}
+```
