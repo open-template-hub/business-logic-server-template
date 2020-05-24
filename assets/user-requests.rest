@@ -40,7 +40,7 @@ Authorization: Bearer token
 
 DELETE http://localhost:4002/user?username=username
 Content-Type: application/json
-Authorization: Bearer token###
+Authorization: Bearer token
 
 ###
 

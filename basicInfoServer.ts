@@ -34,7 +34,7 @@ app.use(async (req, res, next) => {
 
   next();
  } catch (e) {
-  res.status(ResponseCode.BAD_REQUEST).send({message: e.message});
+  res.status(e.responseCode ? e.responseCode : ResponseCode.INTERNAL_SERVER_ERROR).send(e.message);
  }
 });
 

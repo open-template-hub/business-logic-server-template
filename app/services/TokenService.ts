@@ -9,7 +9,10 @@ export const verifyAccessToken = async (accessToken) => {
   return verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
  } catch (e) {
   if (e instanceof TokenExpiredError) {
-   throw new Error('Token expired');
+   e.responseCode = 401;
+  } else {
+   e.responseCode = 403;
   }
+  throw e;
  }
 };
