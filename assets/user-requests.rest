@@ -1,0 +1,79 @@
+###
+
+GET http://localhost:4002/user/all
+Content-Type: application/json
+Authorization: Bearer token
+
+###
+
+GET http://localhost:4002/user?username=username
+Content-Type: application/json
+Authorization: Bearer token
+
+###
+POST http://localhost:4002/user
+Content-Type: application/json
+Authorization: Bearer token
+
+{
+ "username": "username",
+ "payload": {
+  "firstName": "First",
+  "lastName": "Last"
+ }
+}
+
+###
+PUT http://localhost:4002/user
+Content-Type: application/json
+Authorization: Bearer token
+
+{
+ "username": "username",
+ "payload": {
+  "firstName": "First",
+  "lastName": "Last"
+ }
+}
+
+###
+
+DELETE http://localhost:4002/user?username=username
+Content-Type: application/json
+Authorization: Bearer token
+
+###
+
+GET http://localhost:4002/user/me
+Content-Type: application/json
+Authorization: Bearer token
+
+###
+POST http://localhost:4002/user/me
+Content-Type: application/json
+Authorization: Bearer token
+
+{
+ "payload": {
+  "firstName": "First",
+  "lastName": "Last"
+ }
+}
+
+###
+PUT http://localhost:4002/user/me
+Content-Type: application/json
+Authorization: Bearer token
+
+{
+ "payload": {
+  "firstName": "First",
+  "lastName": "Last"
+ }
+}
+
+###
+
+DELETE http://localhost:4002/user/me
+Content-Type: application/json
+Authorization: Bearer token
