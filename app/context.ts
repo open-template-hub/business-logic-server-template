@@ -19,7 +19,9 @@ export const context = async (req) => {
  }
 
  if (!currentUser) {
-  throw new Error('User must be logged in');
+  let e: any = new Error('User must be logged in');
+  e.responseCode = 403;
+  throw e;
  }
 
  return {dbConn, currentUser};

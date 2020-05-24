@@ -6,15 +6,14 @@ import UserModel from '../models/UserModel'
 
 /**
  * gets all users if has admin rights
- * @param context context
+ * @param dbConn dbConn
  * @returns user list
  */
-export const getAllUsers = async (context) => {
+export const getAllUsers = async (dbConn, currentUser) => {
  let list;
- let connection = context.dbConn;
- if (context.currentUser.role === 'ADMIN') {
+ if (currentUser.role === 'ADMIN') {
   try {
-   list = await UserModel(connection).find();
+   list = await UserModel(dbConn).find();
    if (list != null && list.length > 0) {
     list = list.map(u => {
      return u
@@ -33,14 +32,13 @@ export const getAllUsers = async (context) => {
 
 /**
  * gets user by id
- * @param context context
+ * @param dbConn dbConn
  * @returns user or null
  */
-export const getUser = async (context, username) => {
+export const getUser = async (dbConn, username) => {
  let user;
- let connection = context.dbConn;
  try {
-  user = await UserModel(connection).findOne({username: username});
+  user = await UserModel(dbConn).findOne({username: username});
  } catch (error) {
   console.error('> getUser error: ', error);
   throw error;
@@ -51,15 +49,14 @@ export const getUser = async (context, username) => {
 
 /**
  * creates user
- * @param context context
+ * @param dbConn dbConn
  * @param args user
  * @returns created user
  */
-export const createUser = async (context, username, payload: object) => {
+export const createUser = async (dbConn, username, payload: object) => {
  let createdUser;
- let connection = context.dbConn;
  try {
-  createdUser = (await UserModel(connection).create({username: username, payload: payload}));
+  createdUser = (await UserModel(dbConn).create({username: username, payload: payload}));
  } catch (error) {
   console.error('> createUser error: ', error);
   throw error;
@@ -70,14 +67,13 @@ export const createUser = async (context, username, payload: object) => {
 
 /**
  * deletes user
- * @param context context
+ * @param dbConn dbConn
  * @returns deleted user or null
  */
-export const deleteUser = async (context, username) => {
+export const deleteUser = async (dbConn, username) => {
  let deletedUser;
- let connection = context.dbConn;
  try {
-  deletedUser = await UserModel(connection).findOneAndDelete({username: username});
+  deletedUser = await UserModel(dbConn).findOneAndDelete({username: username});
  } catch (error) {
   console.error('> deleteUser error: ', error);
   throw error;
@@ -88,15 +84,14 @@ export const deleteUser = async (context, username) => {
 
 /**
  * updates user
- * @param context context
+ * @param dbConn dbConn
  * @param args user
  * @returns updated user or null
  */
-export const updateUser = async (context, username, payload: object) => {
+export const updateUser = async (dbConn, username, payload: object) => {
  let updatedUser;
- let connection = context.dbConn;
  try {
-  updatedUser = await UserModel(connection).findOneAndUpdate({username: username},
+  updatedUser = await UserModel(dbConn).findOneAndUpdate({username: username},
    {
     payload: payload
    }, {new: true});
