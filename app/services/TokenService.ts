@@ -3,15 +3,16 @@
  */
 
 import { TokenExpiredError, verify } from 'jsonwebtoken';
+import { ResponseCode } from '../models/Constant';
 
 export const verifyAccessToken = async (accessToken) => {
  try {
   return verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
  } catch (e) {
   if (e instanceof TokenExpiredError) {
-   e.responseCode = 401;
+   e.responseCode = ResponseCode.UNAUTHORIZED;
   } else {
-   e.responseCode = 403;
+   e.responseCode = ResponseCode.FORBIDDEN;
   }
   throw e;
  }
