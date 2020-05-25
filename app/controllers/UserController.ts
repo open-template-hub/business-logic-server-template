@@ -3,6 +3,7 @@
  */
 
 import UserModel from '../models/UserModel'
+import { ResponseCode } from '../models/Constant';
 
 /**
  * gets all users if has admin rights
@@ -24,7 +25,9 @@ export const getAllUsers = async (dbConn, currentUser) => {
    throw new Error('Error retrieving all users');
   }
  } else {
-  throw new Error('You do not have desired permission for this operation.');
+  let e :any = new Error('Permission denied');
+  e.responseCode = ResponseCode.FORBIDDEN;
+  throw e;
  }
 
  return list;

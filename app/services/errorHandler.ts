@@ -3,6 +3,7 @@
  */
 
 import { ResponseCode } from "../models/Constant";
+import { JsonWebTokenError } from 'jsonwebtoken';
 
 export const handle = (exception) => {
   let response = {
@@ -10,8 +11,9 @@ export const handle = (exception) => {
     message: exception.message
   };
 
-  if (exception.message === "Error that will be handled") {
-    // Overwrite Response Code and Message here
+  // Overwrite Response Code and Message here
+  if (exception.responseCode) {
+    response.code = exception.responseCode;
   }
 
   return response;
