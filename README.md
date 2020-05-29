@@ -6,10 +6,9 @@
 [![Issues](https://img.shields.io/github/issues/open-template-hub/basic-info-server-template?color=2F7488&style=plastic)]()
 [![PRCLosed](https://img.shields.io/github/issues-pr-closed-raw/open-template-hub/basic-info-server-template?color=2F7488&style=plastic)]()
 [![LAstCommit](https://img.shields.io/github/last-commit/open-template-hub/basic-info-server-template?color=2F7488&style=plastic)]()
-[![Release](https://img.shields.io/github/release/open-template-hub/basic-info-server-template?color=2F7488&style=plastic)]()
+[![Release](https://img.shields.io/github/release/open-template-hub/basic-info-server-template?include_prereleases&color=2F7488&style=plastic)]()
 
 Basic UI Template in Angular
-
 
 ## Configurations
 
