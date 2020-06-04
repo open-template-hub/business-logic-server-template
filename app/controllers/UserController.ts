@@ -3,16 +3,14 @@
  */
 
 import UserModel from '../models/UserModel'
-import { ResponseCode } from '../models/Constant';
 
 /**
- * gets all users if has admin rights
+ * gets all users
  * @param dbConn dbConn
  * @returns user list
  */
-export const getAllUsers = async (dbConn, currentUser) => {
+export const getAllUsers = async (dbConn) => {
  let list;
- if (currentUser.role === 'ADMIN') {
   try {
    list = await UserModel(dbConn).find();
    if (list != null && list.length > 0) {
@@ -24,12 +22,6 @@ export const getAllUsers = async (dbConn, currentUser) => {
    console.error('> getAllUsers error: ', error);
    throw new Error('Error retrieving all users');
   }
- } else {
-  let e :any = new Error('Permission denied');
-  e.responseCode = ResponseCode.FORBIDDEN;
-  throw e;
- }
-
  return list;
 }
 

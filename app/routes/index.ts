@@ -1,4 +1,5 @@
 import userRouter from './userRoute';
+import productRouter from './productRoute';
 import { Request, Response } from 'express';
 import { context } from '../context';
 import { handle } from '../services/errorHandler';
@@ -20,6 +21,7 @@ export module Routes {
   });
 
   app.use('/user', userRouter);
+  app.use('/product', productRouter);
 
   // Use for error handling
   app.use(function (err, req, res, next) {

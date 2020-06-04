@@ -1,0 +1,23 @@
+###
+
+GET http://localhost:4002/product/all
+Authorization: Bearer token
+
+###
+
+GET http://localhost:4002/product?product_id=product_id
+Authorization: Bearer token
+
+###
+POST http://localhost:4002/product
+Content-Type: application/json
+Authorization: Bearer token
+
+{
+ "product_id": "product_id",
+ "name": "Product 1",
+ "description": "product description",
+ "payload": {
+  "premium_content": "premium content!"
+ }
+}
