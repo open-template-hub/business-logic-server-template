@@ -17,7 +17,10 @@ Basic UI Template in Angular
 PORT={Server Port}
 MONGODB_URI={MongoDB Connection String}
 ACCESS_TOKEN_SECRET={Access Token Secret}
+RESPONSE_ENCRYPTION_SECRET={Response Encryption Secret}
 ```
+
+* If you do give **RESPONSE_ENCRYPTION_SECRET**, response encryption mechanism will be disabled automatically.
 
 ## Contributors
 
