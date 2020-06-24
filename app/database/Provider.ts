@@ -16,7 +16,7 @@ export const getConnection = async (): Promise<mongoose.Connection> => {
  const uri: string = process.env.MONGODB_URI as string;
 
  if (conn == null) {
-  conn = await mongoose.createConnection(uri, {
+  conn = mongoose.createConnection(uri, {
    bufferCommands: false,
    bufferMaxEntries: 0,
    useNewUrlParser: true,

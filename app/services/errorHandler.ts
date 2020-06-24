@@ -3,7 +3,6 @@
  */
 
 import { ResponseCode } from "../models/Constant";
-import { JsonWebTokenError } from 'jsonwebtoken';
 
 export const handle = (exception) => {
   let response = {

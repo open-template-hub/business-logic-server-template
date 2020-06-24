@@ -18,7 +18,7 @@ const router = Router();
 router.get(subRoutes.all, async (req: Request, res: Response) => {
  // GET endpoint to get all products, this is for admin usage,
  // you should add admin rights on context level
- const admin = await getAdmin(req);
+ await getAdmin(req);
  let products = await getAllProducts(res.locals.ctx.dbConn);
  res.status(ResponseCode.OK).json(products);
 });
@@ -31,7 +31,7 @@ router.get(subRoutes.root, async (req: Request, res: Response) => {
 
 router.post(subRoutes.root, async (req: Request, res: Response) => {
  // Create new Product
- const admin = await getAdmin(req);
+ await getAdmin(req);
  let product = await createProduct(res.locals.ctx.dbConn, req.body.product_id, req.body.name, req.body.description, req.body.payload);
  res.status(ResponseCode.CREATED).json(product);
 });
