@@ -75,4 +75,4 @@ If you don't give **RESPONSE_ENCRYPTION_SECRET**, response encryption mechanism 
 
 ## LICENSE
 
-[MIT](LICENSE)
+The source code for this project is released under the [MIT License](LICENSE).
