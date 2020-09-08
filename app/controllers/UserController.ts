@@ -12,7 +12,7 @@ import UserModel from '../models/UserModel'
 export const getAllUsers = async (dbConn) => {
  let list;
   try {
-   list = await UserModel(dbConn).find();
+   list = UserModel(dbConn).find();
    if (list != null && list.length > 0) {
     list = list.map(u => {
      return u
@@ -33,7 +33,7 @@ export const getAllUsers = async (dbConn) => {
 export const getUser = async (dbConn, username) => {
  let user;
  try {
-  user = await UserModel(dbConn).findOne({username: username});
+  user = UserModel(dbConn).findOne({username: username});
  } catch (error) {
   console.error('> getUser error: ', error);
   throw error;
@@ -68,7 +68,7 @@ export const createUser = async (dbConn, username, payload: object) => {
 export const deleteUser = async (dbConn, username) => {
  let deletedUser;
  try {
-  deletedUser = await UserModel(dbConn).findOneAndDelete({username: username});
+  deletedUser = UserModel(dbConn).findOneAndDelete({username: username});
  } catch (error) {
   console.error('> deleteUser error: ', error);
   throw error;
@@ -86,7 +86,7 @@ export const deleteUser = async (dbConn, username) => {
 export const updateUser = async (dbConn, username, payload: object) => {
  let updatedUser;
  try {
-  updatedUser = await UserModel(dbConn).findOneAndUpdate({username: username},
+  updatedUser = UserModel(dbConn).findOneAndUpdate({username: username},
    {
     payload: payload
    }, {new: true});

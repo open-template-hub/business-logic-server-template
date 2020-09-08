@@ -12,7 +12,7 @@ import ProductModel from '../models/ProductModel'
 export const getAllProducts = async (dbConn) => {
  let list;
   try {
-   list = await ProductModel(dbConn).find();
+   list = ProductModel(dbConn).find();
    if (list != null && list.length > 0) {
     list = list.map(u => {
      return u
@@ -35,7 +35,7 @@ export const getAllProducts = async (dbConn) => {
 export const getProduct = async (dbConn, product_id) => {
  let product;
  try {
-  product = await ProductModel(dbConn).findOne({product_id});
+  product = ProductModel(dbConn).findOne({product_id});
  } catch (error) {
   console.error('> getProduct error: ', error);
   throw error;

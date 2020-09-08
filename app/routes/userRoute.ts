@@ -19,7 +19,7 @@ const router = Router();
 router.get(subRoutes.all, async (req: Request, res: Response) => {
   // GET endpoint to get all users, this is for admin usage,
   // you should add admin rights on context level
-  const admin = await getAdmin(req);
+  await getAdmin(req);
   let users = await getAllUsers(res.locals.ctx.dbConn);
   res.status(ResponseCode.OK).json(users);
 });
