@@ -2,7 +2,7 @@
  * @description holds crud operations for the product entity
  */
 
-import ProductModel from '../models/ProductModel'
+import ProductModel from '../models/product.model'
 
 /**
  * gets all products if has admin rights

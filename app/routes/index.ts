@@ -1,9 +1,17 @@
-import userRouter from './userRoute';
-import productRouter from './productRoute';
+import monitorRouter from './monitor.route';
+import userRouter from './user.route';
+import productRouter from './product.route';
 import { Request, Response } from 'express';
 import { context } from '../context';
-import { handle } from '../services/errorHandler';
-import { EncryptionService } from '../services/encryptionService';
+import { handle } from '../services/error-handler.service';
+import { EncryptionService } from '../services/encryption.service';
+
+const subRoutes = {
+  root: '/',
+  monitor: '/monitor',
+  user: '/user',
+  product: '/product',
+}
 
 export module Routes {
   export function mount(app) {
@@ -22,9 +30,11 @@ export module Routes {
       next();
     }
 
-    // use this interceptor before routes
+    // Use this interceptor before routes
     app.use(responseInterceptor);
 
+    // Monitor router should be called before context creation
+    app.use(subRoutes.monitor, monitorRouter);
 
     // INFO: Keep this method at top at all times
     app.all('/*', async (req: Request, res: Response, next) => {
@@ -39,8 +49,9 @@ export module Routes {
       }
     });
 
-    app.use('/user', userRouter);
-    app.use('/product', productRouter);
+    // INFO: Add your routes here
+    app.use(subRoutes.user, userRouter);
+    app.use(subRoutes.product, productRouter);
 
     // Use for error handling
     app.use(function (err, req, res, next) {
@@ -48,7 +59,6 @@ export module Routes {
       console.log(err);
       res.status(error.code).json({ message: error.message });
     });
-
   }
 }
 

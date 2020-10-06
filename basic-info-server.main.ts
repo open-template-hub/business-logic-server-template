@@ -7,20 +7,23 @@ import { Routes } from './app/routes';
 import express = require('express');
 import bodyParser = require('body-parser');
 
-dotenv.config();
+// use .env file
+const env = dotenv.config();
+console.log(env.parsed);
 
+// express init
 const app: express.Application = express();
 
-app.use(bodyParser.urlencoded({extended: false}))
-
 // parse application/json
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cors());
 
+// mount routes
 Routes.mount(app);
 
-const port: string = process.env.PORT || '3000' as string;
-
+// listen port
+const port: string = process.env.PORT || '4002' as string;
 app.listen(port, () => {
- console.log('Node app is running on port', port);
+ console.info('Basic Info Server is running on port: ', port);
 });

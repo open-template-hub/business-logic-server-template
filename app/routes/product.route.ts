@@ -4,9 +4,9 @@
 
 import Router from 'express-promise-router';
 import { Request, Response } from 'express';
-import { ResponseCode } from '../models/Constant';
-import { getAdmin } from '../services/authService';
-import { createProduct, getAllProducts, getProduct } from '../controllers/ProductController';
+import { ResponseCode } from '../util/constant';
+import { getAdmin } from '../services/auth.service';
+import { createProduct, getAllProducts, getProduct } from '../services/product.service';
 
 const subRoutes = {
  root: '/',

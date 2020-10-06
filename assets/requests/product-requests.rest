@@ -1,14 +1,12 @@
-###
-
+### Get All Products
 GET http://localhost:4002/product/all
 Authorization: Bearer token
 
-###
-
+### Get Product With Id
 GET http://localhost:4002/product?product_id=product_id
 Authorization: Bearer token
 
-###
+### Add Product
 POST http://localhost:4002/product
 Content-Type: application/json
 Authorization: Bearer token

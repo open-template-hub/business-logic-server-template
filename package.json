@@ -2,7 +2,7 @@
  "name": "basic-info-server",
  "version": "1.0.0",
  "description": "Template Basic Info Server",
- "main": "basicInfoServer.ts",
+ "main": "basic-info-server.main.ts",
  "license": "MIT",
  "dependencies": {
   "@types/dotenv": "^8.2.0",
@@ -25,7 +25,7 @@
   "nodemon": "^1.19.0"
  },
  "scripts": {
-  "start": "ts-node basicInfoServer.ts",
-  "devStart": "nodemon --exec ts-node basicInfoServer.ts"
+  "start": "ts-node basic-info-server.main.ts",
+  "devStart": "nodemon --exec ts-node basic-info-server.main.ts"
  }
 }
