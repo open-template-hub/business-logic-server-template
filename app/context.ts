@@ -2,8 +2,8 @@
  * @description holds context
  */
 
-import { getConnection } from './database/Provider';
-import { getCurrentUser } from './services/authService';
+import { getConnection } from './providers/mongodb.provider';
+import { getCurrentUser } from './services/auth.service';
 
 export const context = async (req) => {
 

@@ -2,7 +2,7 @@
  * @description holds crud operations for the user entity
  */
 
-import UserModel from '../models/UserModel'
+import UserModel from '../models/user.model'
 
 /**
  * gets all users

@@ -1,14 +1,12 @@
-###
-
+### Get All Users
 GET http://localhost:4002/user/all
 Authorization: Bearer token
 
-###
-
+### Get User With Username
 GET http://localhost:4002/user?username=username
 Authorization: Bearer token
 
-###
+### Add User
 POST http://localhost:4002/user
 Content-Type: application/json
 Authorization: Bearer token
@@ -21,7 +19,7 @@ Authorization: Bearer token
  }
 }
 
-###
+### Update User
 PUT http://localhost:4002/user
 Content-Type: application/json
 Authorization: Bearer token
@@ -34,18 +32,16 @@ Authorization: Bearer token
  }
 }
 
-###
-
+### Delete User With Username
 DELETE http://localhost:4002/user?username=username
 Content-Type: application/json
 Authorization: Bearer token
 
-###
-
+### Get Me
 GET http://localhost:4002/user/me
 Authorization: Bearer token
 
-###
+### Initialize Me
 POST http://localhost:4002/user/me
 Content-Type: application/json
 Authorization: Bearer token
@@ -57,7 +53,7 @@ Authorization: Bearer token
  }
 }
 
-###
+### Update Me
 PUT http://localhost:4002/user/me
 Content-Type: application/json
 Authorization: Bearer token
@@ -69,8 +65,7 @@ Authorization: Bearer token
  }
 }
 
-###
-
+### Delete Me
 DELETE http://localhost:4002/user/me
 Content-Type: application/json
 Authorization: Bearer token
