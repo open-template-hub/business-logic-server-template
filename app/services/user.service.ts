@@ -10,18 +10,12 @@ import UserModel from '../models/user.model'
  * @returns user list
  */
 export const getAllUsers = async (dbConn) => {
- let list;
-  try {
-   list = UserModel(dbConn).find();
-   if (list != null && list.length > 0) {
-    list = list.map(u => {
-     return u
-    });
-   }
-  } catch (error) {
-   console.error('> getAllUsers error: ', error);
-   throw new Error('Error retrieving all users');
-  }
+ let list = UserModel(dbConn).find();
+ if (list != null) {
+  list = list.map(u => {
+   return u;
+  });
+ }
  return list;
 }
 
@@ -31,15 +25,7 @@ export const getAllUsers = async (dbConn) => {
  * @returns user or null
  */
 export const getUser = async (dbConn, username) => {
- let user;
- try {
-  user = UserModel(dbConn).findOne({username: username});
- } catch (error) {
-  console.error('> getUser error: ', error);
-  throw error;
- }
-
- return user;
+ return UserModel(dbConn).findOne({username: username});
 }
 
 /**
@@ -49,15 +35,7 @@ export const getUser = async (dbConn, username) => {
  * @returns created user
  */
 export const createUser = async (dbConn, username, payload: object) => {
- let createdUser;
- try {
-  createdUser = (await UserModel(dbConn).create({username: username, payload: payload}));
- } catch (error) {
-  console.error('> createUser error: ', error);
-  throw error;
- }
-
- return createdUser;
+ return (await UserModel(dbConn).create({username: username, payload: payload}));
 }
 
 /**
@@ -66,15 +44,7 @@ export const createUser = async (dbConn, username, payload: object) => {
  * @returns deleted user or null
  */
 export const deleteUser = async (dbConn, username) => {
- let deletedUser;
- try {
-  deletedUser = UserModel(dbConn).findOneAndDelete({username: username});
- } catch (error) {
-  console.error('> deleteUser error: ', error);
-  throw error;
- }
-
- return deletedUser;
+ return UserModel(dbConn).findOneAndDelete({username: username});
 }
 
 /**
@@ -84,16 +54,17 @@ export const deleteUser = async (dbConn, username) => {
  * @returns updated user or null
  */
 export const updateUser = async (dbConn, username, payload: object) => {
- let updatedUser;
- try {
-  updatedUser = UserModel(dbConn).findOneAndUpdate({username: username},
-   {
-    payload: payload
-   }, {new: true});
- } catch (error) {
-  console.error('> updateUser error: ', error);
-  throw error;
- }
+ return UserModel(dbConn).findOneAndUpdate({username: username}, {payload: payload}, {new: true});
+}
 
- return updatedUser;
+/**
+ * search users by username prefix
+ * @param dbConn dbConn
+ * @returns users or null
+ */
+export const search = async (dbConn, prefix, limit?: number) => {
+ if (!limit) {
+  limit = 10;
+ }
+ return UserModel(dbConn).find({username: {'$regex': prefix, '$options': 'i'}}, null, {limit}).select('username -_id');
 }

@@ -19,7 +19,7 @@ const userSchema: mongoose.Schema = new mongoose.Schema(schema);
 
 /**
  * creates user model
- * @param conn database connection
+ * @param conn providers connection
  * @returns user model
  */
 const UserModel = (conn: mongoose.Connection) =>
