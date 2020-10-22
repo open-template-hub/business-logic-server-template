@@ -47,25 +47,6 @@ export class MongoDbProvider {
   ).catch(error => {
    throw error;
   });
-
-  await this.loadInitialData();
- }
-
- loadInitialData = async () => {
-  const data = this.builder.buildTemplateFromFile(this.preloadDataTemplatePath);
-
-  if (data.length > 0) {
-   const json = JSON.parse(data);
-
-   // TODO: Implement it for categories
-   /*
-   const serviceProviderRepository = await new ServiceProviderRepository().getRepository(this.connection);
-   let serviceConfig: any = await serviceProviderRepository.findOne({key: json.key});
-
-   if (!serviceConfig) {
-    await serviceProviderRepository.create(json);
-   }*/
-  }
  }
 
  getConnection() {
