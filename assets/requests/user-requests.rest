@@ -3,8 +3,10 @@ GET http://localhost:4002/user/all
 Authorization: Bearer token
 
 ### Get User With Username
-GET http://localhost:4002/user?username=username
-Authorization: Bearer token
+GET http://localhost:4002/user/public?username=username
+
+### Search Usernames with Prefix
+GET http://localhost:4002/user/search?q=username&limit=10
 
 ### Add User
 POST http://localhost:4002/user

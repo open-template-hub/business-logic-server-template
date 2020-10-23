@@ -21,7 +21,7 @@ const productSchema: mongoose.Schema = new mongoose.Schema(schema);
 
 /**
  * creates product model
- * @param conn database connection
+ * @param conn providers connection
  * @returns product model
  */
 const ProductModel = (conn: mongoose.Connection) =>

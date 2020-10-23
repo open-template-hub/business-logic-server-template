@@ -2,14 +2,24 @@
  * @description holds context
  */
 
-import { getConnection } from './providers/mongodb.provider';
+import { MongoDbProvider } from './providers/mongodb.provider';
 import { getCurrentUser } from './services/auth.service';
 
-export const context = async (req) => {
+export const context = async (req: any, mongoDbProvider: MongoDbProvider, publicPaths: string[]) => {
 
- const dbConn = await getConnection();
+ let currentUser: any;
+ let publicPath = false;
 
- const currentUser = await getCurrentUser(req);
+ for (const path of publicPaths) {
+  if (req.path.startsWith(path)) {
+   publicPath = true;
+   break;
+  }
+ }
 
- return {dbConn, currentUser};
+ if (!publicPath) {
+  currentUser = await getCurrentUser(req);
+ }
+
+ return {mongoDbProvider, currentUser};
 }

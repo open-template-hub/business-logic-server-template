@@ -3,6 +3,7 @@
  */
 
 import { verifyAccessToken } from './token.service';
+import { ResponseCode } from '../util/constant';
 
 export const getCurrentUser = async (req) => {
  let authToken = null;
@@ -18,7 +19,7 @@ export const getCurrentUser = async (req) => {
 
  if (!currentUser) {
   let e: any = new Error('User must be logged in');
-  e.responseCode = 403;
+  e.responseCode = ResponseCode.FORBIDDEN;
   throw e;
  }
 
@@ -39,7 +40,7 @@ export const getAdmin = async (req) => {
 
  if (!currentUser || currentUser.role !== 'ADMIN') {
   let e: any = new Error('Forbidden');
-  e.responseCode = 403;
+  e.responseCode = ResponseCode.FORBIDDEN;
   throw e;
  }
 
