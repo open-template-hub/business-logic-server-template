@@ -18,7 +18,9 @@ export class MongoDbProvider {
  preload = async () => {
   this.poolLimit = parseInt(<string>process.env.MONGODB_CONNECTION_LIMIT) || 1 as number;
 
-  await this.createConnectionPool();
+  await this.createConnectionPool().catch((error) => {
+      throw error;
+  });
  };
 
  createConnectionPool = async () => {
@@ -27,7 +29,9 @@ export class MongoDbProvider {
    if (connection) {
     await connection.close();
    }
-  }));
+  })).catch(error => {
+      throw error;
+  });
 
   // create connection pool
   const uri: string = process.env.MONGODB_URI as string;
