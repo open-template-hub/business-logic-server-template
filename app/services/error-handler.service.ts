@@ -1,11 +1,8 @@
 /**
  * Error Handler
  */
-
-// debug logger
-const debugLog = require('debug')('basic-server:' + __filename.slice(__dirname.length + 1));
-
 import { ResponseCode } from "../util/constant";
+import { debugLog } from './debug-log.service';
 
 export const handle = (exception) => {
   let response = {

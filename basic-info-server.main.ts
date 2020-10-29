@@ -7,9 +7,8 @@ import { Routes } from './app/routes/index.route';
 import express = require('express');
 import bodyParser = require('body-parser');
 import { configureCronJobs } from './app/services/cron.service';
+import { debugLog } from './app/services/debug-log.service';
 
-// debug logger
-const debugLog = require('debug')('basic-server:' + __filename.slice(__dirname.length + 1));
 
 // use .env file
 const env = dotenv.config();

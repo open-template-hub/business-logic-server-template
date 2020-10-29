@@ -30,7 +30,7 @@
  },
  "scripts": {
   "start": "ts-node basic-info-server.main.ts",
-  "devStart": "nodemon --exec DEBUG=basic-server:* ts-node basic-info-server.main.ts"
+  "devStart": "nodemon --exec DEBUG=* ts-node basic-info-server.main.ts"
  },
  "engines": {
   "node": "12.13.1",

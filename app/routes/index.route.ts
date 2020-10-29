@@ -7,9 +7,7 @@ import { handle } from '../services/error-handler.service';
 import { EncryptionService } from '../services/encryption.service';
 import { MongoDbProvider } from '../providers/mongodb.provider';
 import { preload } from '../services/preload.service';
-
-// debug logger
-const debugLog = require('debug')('basic-server:' + __filename.slice(__dirname.length + 1));
+import { debugLog } from '../services/debug-log.service';
 
 const subRoutes = {
   root: '/',
