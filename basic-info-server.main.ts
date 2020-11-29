@@ -1,14 +1,13 @@
 /**
  * @description holds server main
  */
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 import cors from 'cors';
-import { Routes } from './app/routes/index.route';
+import { Routes } from './app/route/index.route';
 import express = require('express');
 import bodyParser = require('body-parser');
-import { configureCronJobs } from './app/services/cron.service';
-import { debugLog } from './app/services/debug-log.service';
-
+import { configureCronJobs } from './app/util/cron.util';
+import { debugLog } from './app/util/debug-log.util';
 
 // use .env file
 const env = dotenv.config();
@@ -21,17 +20,17 @@ const app: express.Application = express();
 app.use(express.static('public'));
 
 // parse application/json
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cors());
 
 // mount routes
 Routes.mount(app);
 
 // listen port
-const port: string = process.env.PORT || '4002' as string;
+const port: string = process.env.PORT || ('4002' as string);
 app.listen(port, () => {
- console.info('Basic Info Server is running on port: ', port);
+  console.info('Basic Info Server is running on port: ', port);
 });
 
 // cron

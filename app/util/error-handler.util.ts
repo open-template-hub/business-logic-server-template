@@ -1,13 +1,13 @@
 /**
  * Error Handler
  */
-import { ResponseCode } from "../util/constant";
-import { debugLog } from './debug-log.service';
+import { ResponseCode } from '../constant';
+import { debugLog } from './debug-log.util';
 
 export const handle = (exception) => {
   let response = {
     code: ResponseCode.BAD_REQUEST,
-    message: exception.message
+    message: exception.message,
   };
 
   // Overwrite Response Code and Message here
@@ -19,4 +19,4 @@ export const handle = (exception) => {
   console.error(response);
 
   return response;
-}
+};
