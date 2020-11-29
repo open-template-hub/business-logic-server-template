@@ -36,6 +36,7 @@ export class UserController {
    * @returns created user
    */
   createUser = async (context: Context, user: User) => {
+    console.log("> CreateUser:: Username: ", user.username);
     const userRepository = await new UserRepository().initialize(
       context.mongodb_provider.getConnection()
     );

@@ -26,7 +26,7 @@ export class ProductRepository {
 
   getProductById = async (product_id) => {
     try {
-      return await this.dataModel.find(product_id);
+      return await this.dataModel.find({ product_id });
     } catch (error) {
       console.error('> getProductById error: ', error);
       throw error;
