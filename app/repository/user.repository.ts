@@ -1,30 +1,80 @@
-/**
- * @description holds user model
- */
-
-import mongoose from 'mongoose';
-import {MongoDbProvider} from "../providers/mongodb.provider";
+import { UserDataModel } from '../data/user.data';
+import { User } from '../interface/user.interface';
 
 export class UserRepository {
-    private readonly collectionName: string = 'users';
-    private userSchema: mongoose.Schema;
+  private dataModel: any = null;
 
-    constructor(private readonly provider: MongoDbProvider) {
-        /**
-         * User schema
-         */
-        const schema: mongoose.SchemaDefinition = {
-            username: {type: String, unique: true, required: true, dropDups: true},
-            payload: {type: Object}
-        };
-        this.userSchema = new mongoose.Schema(schema);
-    }
+  initialize = async (connection: any) => {
+    this.dataModel = await new UserDataModel().getDataModel(connection);
+    return this;
+  };
 
-    /**
-     * creates user model
-     * @return User model
-     */
-    getRepository = () => {
-        return this.provider.getConnection().model(this.collectionName, this.userSchema, this.collectionName);
+  getAllUsers = async () => {
+    try {
+      let list = await this.dataModel.find();
+      if (list != null) {
+        list = list.map((u) => {
+          return u;
+        });
+      }
+      return list;
+    } catch (error) {
+      console.error('> getAllUsers error: ', error);
+      throw error;
     }
+  };
+
+  getUserByUsername = async (username: string) => {
+    try {
+      return await this.dataModel.findOne({ username });
+    } catch (error) {
+      console.error('> getUserByUsername error: ', error);
+      throw error;
+    }
+  };
+
+  createUser = async (user: User) => {
+    try {
+      return await this.dataModel.create({
+        username: user.username,
+        payload: user.payload,
+      });
+    } catch (error) {
+      console.error('> createUser error: ', error);
+      throw error;
+    }
+  };
+
+  deleteUserByUsername = async (username: string) => {
+    try {
+      return await this.dataModel.findOneAndDelete({ username });
+    } catch (error) {
+      console.error('> deleteUserByUsername error: ', error);
+      throw error;
+    }
+  };
+
+  updateUser = async (user: User) => {
+    try {
+      return await this.dataModel.findOneAndUpdate(
+        { username: user.username },
+        { payload: user.payload },
+        { new: true }
+      );
+    } catch (error) {
+      console.error('> updateUser error: ', error);
+      throw error;
+    }
+  };
+
+  searchUser = async (prefix, limit: number) => {
+    try {
+      return await this.dataModel
+        .find({ username: { $regex: prefix, $options: 'i' } }, null, { limit })
+        .select('username -_id');
+    } catch (error) {
+      console.error('> searchUser error: ', error);
+      throw error;
+    }
+  };
 }

@@ -1,20 +1,26 @@
-import { router as monitorRouter, publicRoutes as monitorPublicRoutes } from './monitor.route';
-import { router as userRouter, publicRoutes as userPublicRoutes } from './user.route';
+import {
+  router as monitorRouter,
+  publicRoutes as monitorPublicRoutes,
+} from './monitor.route';
+import {
+  router as userRouter,
+  publicRoutes as userPublicRoutes,
+} from './user.route';
 import productRouter from './product.route';
 import { Request, Response } from 'express';
 import { context } from '../context';
-import { handle } from '../services/error-handler.service';
-import { EncryptionService } from '../services/encryption.service';
-import { MongoDbProvider } from '../providers/mongodb.provider';
-import { preload } from '../services/preload.service';
-import { debugLog } from '../services/debug-log.service';
+import { handle } from '../util/error-handler.util';
+import { EncryptionService } from '../util/encryption.util';
+import { MongoDbProvider } from '../provider/mongo.provider';
+import { preload } from '../util/preload.util';
+import { debugLog } from '../util/debug-log.util';
 
 const subRoutes = {
   root: '/',
   monitor: '/monitor',
   user: '/user',
-  product: '/product'
-}
+  product: '/product',
+};
 
 const publicRoutes: string[] = [];
 
@@ -22,7 +28,9 @@ export module Routes {
   const mongoDbProvider = new MongoDbProvider();
 
   export const mount = (app: any) => {
-    preload(mongoDbProvider).then(() => console.log('DB preload is completed.'));
+    preload(mongoDbProvider).then(() =>
+      console.log('DB preload is completed.')
+    );
 
     for (const route of monitorPublicRoutes) {
       publicRoutes.push(subRoutes.monitor + route);
@@ -36,15 +44,15 @@ export module Routes {
       let originalSend = res.send;
       const service = new EncryptionService();
       res.send = function () {
-        debugLog("Starting Encryption: ", new Date());
+        debugLog('Starting Encryption: ', new Date());
         let encrypted_arguments = service.encrypt(arguments);
-        debugLog("Encryption Completed: ", new Date());
+        debugLog('Encryption Completed: ', new Date());
 
         originalSend.apply(res, encrypted_arguments);
       };
 
       next();
-    }
+    };
 
     // Use this interceptor before routes
     app.use(responseInterceptor);
@@ -58,7 +66,7 @@ export module Routes {
         next();
       } catch (err) {
         let error = handle(err);
-        res.status(error.code).json({message: error.message});
+        res.status(error.code).json({ message: error.message });
       }
     });
 
@@ -72,6 +80,5 @@ export module Routes {
       let error = handle(err);
       res.status(error.code).json({ message: error.message });
     });
-  }
+  };
 }
-

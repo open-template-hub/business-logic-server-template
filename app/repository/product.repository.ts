@@ -1,33 +1,49 @@
-/**
- * @description holds product model
- */
-
-import mongoose from 'mongoose';
-import {MongoDbProvider} from "../providers/mongodb.provider";
+import { ProductDataModel } from '../data/product.data';
+import { Product } from '../interface/product.interface';
 
 export class ProductRepository {
-    private readonly collectionName: string = 'products';
-    private productSchema: mongoose.Schema;
+  private dataModel: any = null;
 
-    constructor(private readonly provider: MongoDbProvider) {
-        /**
-         * Product schema
-         */
-        const schema: mongoose.SchemaDefinition = {
-            product_id: {type: String, unique: true, required: true, dropDups: true},
-            name: {type: String, required: true},
-            description: {type: String, required: true},
-            payload: {type: Object}
-        };
+  initialize = async (connection: any) => {
+    this.dataModel = await new ProductDataModel().getDataModel(connection);
+    return this;
+  };
 
-        this.productSchema = new mongoose.Schema(schema);
+  getAllProducts = async () => {
+    try {
+      let list = await this.dataModel.find();
+      if (list != null) {
+        list = list.map((u) => {
+          return u;
+        });
+      }
+      return list;
+    } catch (error) {
+      console.error('> getAllProducts error: ', error);
+      throw error;
     }
+  };
 
-    /**
-     * creates product model
-     * @return Product model
-     */
-    getRepository = () => {
-        return this.provider.getConnection().model(this.collectionName, this.productSchema, this.collectionName);
+  getProductById = async (product_id) => {
+    try {
+      return await this.dataModel.find(product_id);
+    } catch (error) {
+      console.error('> getProductById error: ', error);
+      throw error;
     }
+  };
+
+  createProduct = async (product: Product) => {
+    try {
+      return await this.dataModel.create({
+        product_id: product.product_id,
+        name: product.name,
+        description: product.description,
+        payload: product.payload,
+      });
+    } catch (error) {
+      console.error('> createProduct error: ', error);
+      throw error;
+    }
+  };
 }
