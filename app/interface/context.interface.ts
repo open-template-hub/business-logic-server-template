@@ -1,6 +1,10 @@
+import { UserRole } from '../enum/user-role.enum';
 import { MongoDbProvider } from '../provider/mongo.provider';
 
 export interface Context {
-  mongoDbProvider: MongoDbProvider;
-  currentUser: string;
+  mongodb_provider: MongoDbProvider;
+  role: UserRole;
+  isAdmin: boolean;
+  username: string;
+  serviceKey: string;
 }

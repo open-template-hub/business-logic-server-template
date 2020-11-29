@@ -2,27 +2,58 @@
  * @description holds context
  */
 
+import { AuthUtil } from './util/auth.util';
 import { MongoDbProvider } from './provider/mongo.provider';
-import { getCurrentUser } from './util/auth.util';
+import { Context } from './interface/context.interface';
+import { TokenUtil } from './util/token.util';
+import { UserRole } from './enum/user-role.enum';
+import { ErrorMessage } from './constant';
 
 export const context = async (
   req: any,
-  mongoDbProvider: MongoDbProvider,
-  publicPaths: string[]
+  mongodb_provider: MongoDbProvider,
+  publicPaths: string[],
+  adminPaths: string[]
 ) => {
+  const tokenService = new TokenUtil();
+  const authService = new AuthUtil(tokenService);
+
   let currentUser: any;
   let publicPath = false;
+  let adminPath = false;
 
-  for (const path of publicPaths) {
-    if (req.path.startsWith(path)) {
+  publicPaths.forEach((p) => {
+    if (req.path === p) {
       publicPath = true;
-      break;
+      return;
     }
-  }
+  });
+
+  adminPaths.forEach((p) => {
+    if (req.path === p) {
+      adminPath = true;
+      return;
+    }
+  });
 
   if (!publicPath) {
-    currentUser = await getCurrentUser(req);
+    currentUser = await authService.getCurrentUser(req);
   }
 
-  return { mongoDbProvider, currentUser };
+  const serviceKey = req.body.key;
+
+  const role = currentUser ? (currentUser.role as UserRole) : ('' as UserRole);
+  const isAdmin = authService.isAdmin(role);
+
+  if (adminPath && !isAdmin) {
+    throw new Error(ErrorMessage.FORBIDDEN);
+  }
+
+  return {
+    mongodb_provider,
+    username: currentUser ? currentUser.username : '',
+    role,
+    isAdmin,
+    serviceKey,
+  } as Context;
 };

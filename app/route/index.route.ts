@@ -5,8 +5,12 @@ import {
 import {
   router as userRouter,
   publicRoutes as userPublicRoutes,
+  adminRoutes as userAdminRoutes,
 } from './user.route';
-import productRouter from './product.route';
+import {
+  router as productRouter,
+  adminRoutes as productAdminRoutes,
+} from './product.route';
 import { Request, Response } from 'express';
 import { context } from '../context';
 import { handle } from '../util/error-handler.util';
@@ -25,20 +29,36 @@ const subRoutes = {
 const publicRoutes: string[] = [];
 
 export module Routes {
-  const mongoDbProvider = new MongoDbProvider();
+  const mongodb_provider = new MongoDbProvider();
+  var publicRoutes: string[] = [];
+  var adminRoutes: string[] = [];
+
+  function populateRoutes(mainRoute, subRoutes) {
+    var populated = Array<string>();
+    for (var i = 0; i < subRoutes.length; i++) {
+      const s = subRoutes[i];
+      populated.push(mainRoute + (s === '/' ? '' : s));
+    }
+
+    return populated;
+  }
 
   export const mount = (app: any) => {
-    preload(mongoDbProvider).then(() =>
+    preload(mongodb_provider).then(() =>
       console.log('DB preload is completed.')
     );
 
-    for (const route of monitorPublicRoutes) {
-      publicRoutes.push(subRoutes.monitor + route);
-    }
+    publicRoutes = [
+      ...populateRoutes(subRoutes.monitor, monitorPublicRoutes),
+      ...populateRoutes(subRoutes.user, userPublicRoutes),
+    ];
+    console.log('Public Routes: ', publicRoutes);
 
-    for (const route of userPublicRoutes) {
-      publicRoutes.push(subRoutes.user + route);
-    }
+    adminRoutes = [
+      ...populateRoutes(subRoutes.product, productAdminRoutes),
+      ...populateRoutes(subRoutes.user, userAdminRoutes),
+    ];
+    console.log('Admin Routes: ', adminRoutes);
 
     const responseInterceptor = (req, res, next) => {
       let originalSend = res.send;
@@ -61,7 +81,12 @@ export module Routes {
     app.all('/*', async (req: Request, res: Response, next) => {
       try {
         // create context
-        res.locals.ctx = await context(req, mongoDbProvider, publicRoutes);
+        res.locals.ctx = await context(
+          req,
+          mongodb_provider,
+          publicRoutes,
+          adminRoutes
+        );
 
         next();
       } catch (err) {

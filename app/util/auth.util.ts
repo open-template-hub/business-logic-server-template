@@ -2,47 +2,39 @@
  * @description holds context
  */
 
-import { verifyAccessToken } from './token.util';
-import { ResponseCode } from '../constant';
+import { TokenUtil } from './token.util';
+import { UserRole } from '../enum/user-role.enum';
 
-export const getCurrentUser = async (req) => {
-  let authToken = null;
-  let currentUser = null;
+export class AuthUtil {
+  private adminRoles = [UserRole.ADMIN];
+  constructor(private readonly tokenService: TokenUtil) {}
 
-  const authTokenHeader = req.headers.authorization || '';
-  const BEARER = 'Bearer ';
+  getCurrentUser = async (req: { headers: { authorization: string } }) => {
+    let authToken = '';
+    let currentUser = null;
 
-  if (authTokenHeader && authTokenHeader.startsWith(BEARER)) {
-    authToken = authTokenHeader.slice(BEARER.length);
-    currentUser = await verifyAccessToken(authToken);
-  }
+    const authTokenHeader = req.headers.authorization;
+    const BEARER = 'Bearer ';
 
-  if (!currentUser) {
-    let e: any = new Error('User must be logged in');
-    e.responseCode = ResponseCode.FORBIDDEN;
-    throw e;
-  }
+    if (authTokenHeader && authTokenHeader.startsWith(BEARER)) {
+      authToken = authTokenHeader.slice(BEARER.length);
+      currentUser = await this.tokenService.verifyAccessToken(authToken);
+    }
 
-  return currentUser;
-};
+    if (!currentUser) {
+      let e: any = new Error('User must be logged in');
+      e.responseCode = 403;
+      throw e;
+    }
 
-export const getAdmin = async (req) => {
-  let authToken = null;
-  let currentUser: any = null;
+    return currentUser;
+  };
 
-  const authTokenHeader = req.headers.authorization || '';
-  const BEARER = 'Bearer ';
-
-  if (authTokenHeader && authTokenHeader.startsWith(BEARER)) {
-    authToken = authTokenHeader.slice(BEARER.length);
-    currentUser = await verifyAccessToken(authToken);
-  }
-
-  if (!currentUser || currentUser.role !== 'ADMIN') {
-    let e: any = new Error('Forbidden');
-    e.responseCode = ResponseCode.FORBIDDEN;
-    throw e;
-  }
-
-  return currentUser;
-};
+  isAdmin = (role: UserRole) => {
+    if (this.adminRoles.indexOf(role) >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+}

@@ -5,7 +5,6 @@
 import Router from 'express-promise-router';
 import { Request, Response } from 'express';
 import { ResponseCode } from '../constant';
-import { getAdmin } from '../util/auth.util';
 import { UserController } from '../controller/user.controller';
 import { User } from '../interface/user.interface';
 
@@ -18,6 +17,8 @@ const subRoutes = {
 };
 
 export const publicRoutes = [subRoutes.search, subRoutes.public];
+
+export const adminRoutes = [subRoutes.all];
 
 export const router = Router();
 
@@ -60,7 +61,6 @@ router.get(subRoutes.search, async (req: Request, res: Response) => {
 router.get(subRoutes.all, async (req: Request, res: Response) => {
   // GET endpoint to get all users, this is for admin usage,
   // you should add admin rights on context level
-  await getAdmin(req);
   let users = await userController.getAllUsers(res.locals.ctx);
   res.status(ResponseCode.OK).json(users);
 });

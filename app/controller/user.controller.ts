@@ -10,7 +10,7 @@ export class UserController {
    */
   getAllUsers = async (context: Context) => {
     const userRepository = await new UserRepository().initialize(
-      context.mongoDbProvider.getConnection()
+      context.mongodb_provider.getConnection()
     );
 
     return await userRepository.getAllUsers();
@@ -23,7 +23,7 @@ export class UserController {
    */
   getUser = async (context: Context, username: string) => {
     const userRepository = await new UserRepository().initialize(
-      context.mongoDbProvider.getConnection()
+      context.mongodb_provider.getConnection()
     );
 
     return await userRepository.getUserByUsername(username);
@@ -37,7 +37,7 @@ export class UserController {
    */
   createUser = async (context: Context, user: User) => {
     const userRepository = await new UserRepository().initialize(
-      context.mongoDbProvider.getConnection()
+      context.mongodb_provider.getConnection()
     );
 
     return await userRepository.createUser(user);
@@ -51,7 +51,7 @@ export class UserController {
    */
   deleteUser = async (context: Context, username) => {
     const userRepository = await new UserRepository().initialize(
-      context.mongoDbProvider.getConnection()
+      context.mongodb_provider.getConnection()
     );
 
     return await userRepository.deleteUserByUsername(username);
@@ -65,7 +65,7 @@ export class UserController {
    */
   updateUser = async (context: Context, user: User) => {
     const userRepository = await new UserRepository().initialize(
-      context.mongoDbProvider.getConnection()
+      context.mongodb_provider.getConnection()
     );
 
     return await userRepository.updateUser(user);
@@ -80,7 +80,7 @@ export class UserController {
    */
   search = async (context: Context, prefix, limit?: number) => {
     const userRepository = await new UserRepository().initialize(
-      context.mongoDbProvider.getConnection()
+      context.mongodb_provider.getConnection()
     );
 
     if (!limit) {

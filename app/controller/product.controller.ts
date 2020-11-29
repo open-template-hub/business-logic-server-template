@@ -10,7 +10,7 @@ export class ProductController {
    */
   getAllProducts = async (context: Context) => {
     const productRepository = await new ProductRepository().initialize(
-      context.mongoDbProvider.getConnection()
+      context.mongodb_provider.getConnection()
     );
 
     return await productRepository.getAllProducts();
@@ -24,7 +24,7 @@ export class ProductController {
    */
   getProduct = async (context: Context, product_id) => {
     const productRepository = await new ProductRepository().initialize(
-      context.mongoDbProvider.getConnection()
+      context.mongodb_provider.getConnection()
     );
 
     return await productRepository.getProductById(product_id);
@@ -38,7 +38,7 @@ export class ProductController {
    */
   createProduct = async (context: Context, product: Product) => {
     const productRepository = await new ProductRepository().initialize(
-      context.mongoDbProvider.getConnection()
+      context.mongodb_provider.getConnection()
     );
 
     return await productRepository.createProduct(product);
