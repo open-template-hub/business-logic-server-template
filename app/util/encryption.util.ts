@@ -2,8 +2,13 @@ import CryptoJS from 'crypto-js';
 
 export class EncryptionService {
   encrypt = (args) => {
-    if (args === undefined || args === null || !process.env.RESPONSE_ENCRYPTION_SECRET) return args;
-    
+    if (
+      args === undefined ||
+      args === null ||
+      !process.env.RESPONSE_ENCRYPTION_SECRET
+    )
+      return args;
+
     const secret: string = process.env.RESPONSE_ENCRYPTION_SECRET;
 
     for (let i = 0; i < args.length; i++) {
@@ -12,5 +17,5 @@ export class EncryptionService {
     }
 
     return args;
-  }
+  };
 }

@@ -1,16 +1,13 @@
 /**
  * Error Handler
  */
-
-// debug logger
-const debugLog = require('debug')('basic-server:' + __filename.slice(__dirname.length + 1));
-
-import { ResponseCode } from "../util/constant";
+import { ResponseCode } from '../constant';
+import { debugLog } from './debug-log.util';
 
 export const handle = (exception) => {
   let response = {
     code: ResponseCode.BAD_REQUEST,
-    message: exception.message
+    message: exception.message,
   };
 
   // Overwrite Response Code and Message here
@@ -22,4 +19,4 @@ export const handle = (exception) => {
   console.error(response);
 
   return response;
-}
+};
