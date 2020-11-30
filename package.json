@@ -1,6 +1,6 @@
 {
  "name": "basic-info-server",
- "version": "2.0.2",
+ "version": "2.0.3",
  "description": "Template Basic Info Server",
  "main": "basic-info-server.main.ts",
  "license": "MIT",
