@@ -15,8 +15,8 @@ export const context = async (
   publicPaths: string[],
   adminPaths: string[]
 ) => {
-  const tokenService = new TokenUtil();
-  const authService = new AuthUtil(tokenService);
+  const tokenUtil = new TokenUtil();
+  const authUtil = new AuthUtil(tokenUtil);
 
   let currentUser: any;
   let publicPath = false;
@@ -37,13 +37,13 @@ export const context = async (
   });
 
   if (!publicPath) {
-    currentUser = await authService.getCurrentUser(req);
+    currentUser = await authUtil.getCurrentUser(req);
   }
 
   const serviceKey = req.body.key;
 
   const role = currentUser ? (currentUser.role as UserRole) : ('' as UserRole);
-  const isAdmin = authService.isAdmin(role);
+  const isAdmin = authUtil.isAdmin(role);
 
   if (adminPath && !isAdmin) {
     throw new Error(ErrorMessage.FORBIDDEN);
