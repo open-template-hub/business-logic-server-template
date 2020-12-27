@@ -1,19 +1,31 @@
+/**
+ * @description holds user repository
+ */
+
 import { UserDataModel } from '../data/user.data';
 import { User } from '../interface/user.interface';
 
 export class UserRepository {
   private dataModel: any = null;
 
+  /**
+   * initializes repository
+   * @param connection db connection
+   */
   initialize = async (connection: any) => {
     this.dataModel = await new UserDataModel().getDataModel(connection);
     return this;
   };
 
+  /**
+   * gets all users
+   * @returns user list
+   */
   getAllUsers = async () => {
     try {
       let list = await this.dataModel.find();
       if (list != null) {
-        list = list.map((u) => {
+        list = list.map((u: User) => {
           return u;
         });
       }
@@ -24,6 +36,11 @@ export class UserRepository {
     }
   };
 
+  /**
+   * gets user by username
+   * @param username username
+   * @returns user
+   */
   getUserByUsername = async (username: string) => {
     try {
       return await this.dataModel.findOne({ username });
@@ -33,6 +50,11 @@ export class UserRepository {
     }
   };
 
+  /**
+   * creates user
+   * @param user user
+   * @returns user
+   */
   createUser = async (user: User) => {
     try {
       return await this.dataModel.create({
@@ -45,6 +67,11 @@ export class UserRepository {
     }
   };
 
+  /**
+   * deletes user by username
+   * @param username username
+   * @returns deleted user
+   */
   deleteUserByUsername = async (username: string) => {
     try {
       return await this.dataModel.findOneAndDelete({ username });
@@ -54,6 +81,11 @@ export class UserRepository {
     }
   };
 
+  /**
+   * updates user
+   * @param user user
+   * @returns updated user
+   */
   updateUser = async (user: User) => {
     try {
       return await this.dataModel.findOneAndUpdate(
@@ -67,7 +99,13 @@ export class UserRepository {
     }
   };
 
-  searchUser = async (prefix, limit: number) => {
+  /**
+   * searches users by prefix
+   * @param prefix prefix
+   * @param limit limit
+   * @returns user list
+   */
+  searchUser = async (prefix: string, limit: number) => {
     try {
       return await this.dataModel
         .find({ username: { $regex: prefix, $options: 'i' } }, null, { limit })

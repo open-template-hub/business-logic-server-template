@@ -1,5 +1,5 @@
 /**
- * @description holds product model
+ * @description holds product data model
  */
 
 import mongoose from 'mongoose';

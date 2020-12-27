@@ -1,3 +1,7 @@
+/**
+ * @description holds index routes
+ */
+
 import {
   router as monitorRouter,
   publicRoutes as monitorPublicRoutes,
@@ -11,13 +15,13 @@ import {
   router as productRouter,
   adminRoutes as productAdminRoutes,
 } from './product.route';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { context } from '../context';
-import { handle } from '../util/error-handler.util';
-import { EncryptionService } from '../util/encryption.util';
+import { ErrorHandlerUtil } from '../util/error-handler.util';
+import { EncryptionUtil } from '../util/encryption.util';
 import { MongoDbProvider } from '../provider/mongo.provider';
-import { preload } from '../util/preload.util';
-import { debugLog } from '../util/debug-log.util';
+import { PreloadUtil } from '../util/preload.util';
+import { DebugLogUtil } from '../util/debug-log.util';
 
 const subRoutes = {
   root: '/',
@@ -28,10 +32,12 @@ const subRoutes = {
 
 export module Routes {
   const mongodb_provider = new MongoDbProvider();
+  const errorHandlerUtil = new ErrorHandlerUtil();
+  const debugLogUtil = new DebugLogUtil();
   var publicRoutes: string[] = [];
   var adminRoutes: string[] = [];
 
-  function populateRoutes(mainRoute, routes) {
+  function populateRoutes(mainRoute: string, routes: Array<string>) {
     var populated = Array<string>();
     for (var i = 0; i < routes.length; i++) {
       const s = routes[i];
@@ -42,9 +48,11 @@ export module Routes {
   }
 
   export const mount = (app: any) => {
-    preload(mongodb_provider).then(() =>
-      console.log('DB preload is completed.')
-    );
+    const preloadUtil = new PreloadUtil();
+
+    preloadUtil
+      .preload(mongodb_provider)
+      .then(() => console.log('DB preload is completed.'));
 
     publicRoutes = [
       ...populateRoutes(subRoutes.monitor, monitorPublicRoutes),
@@ -58,16 +66,21 @@ export module Routes {
     ];
     console.log('Admin Routes: ', adminRoutes);
 
-    const responseInterceptor = (req, res, next) => {
+    // create response interceptor
+    const responseInterceptor = (
+      req: Request,
+      res: Response,
+      next: NextFunction
+    ) => {
       let originalSend = res.send;
-      const service = new EncryptionService();
+      const encryptionUtil = new EncryptionUtil();
       res.send = function () {
-        debugLog('Starting Encryption: ', new Date());
-        let encrypted_arguments = service.encrypt(arguments);
-        debugLog('Encryption Completed: ', new Date());
+        debugLogUtil.log('Starting Encryption: ', new Date());
+        let encrypted_arguments = encryptionUtil.encrypt(arguments);
+        debugLogUtil.log('Encryption Completed: ', new Date());
 
-        originalSend.apply(res, encrypted_arguments);
-      };
+        originalSend.apply(res, encrypted_arguments as any);
+      } as any;
 
       next();
     };
@@ -76,7 +89,7 @@ export module Routes {
     app.use(responseInterceptor);
 
     // INFO: Keep this method at top at all times
-    app.all('/*', async (req: Request, res: Response, next) => {
+    app.all('/*', async (req: Request, res: Response, next: NextFunction) => {
       try {
         // create context
         res.locals.ctx = await context(
@@ -88,7 +101,7 @@ export module Routes {
 
         next();
       } catch (err) {
-        let error = handle(err);
+        let error = errorHandlerUtil.handle(err);
         res.status(error.code).json({ message: error.message });
       }
     });
@@ -99,8 +112,13 @@ export module Routes {
     app.use(subRoutes.product, productRouter);
 
     // Use for error handling
-    app.use(function (err, req, res, next) {
-      let error = handle(err);
+    app.use(function (
+      err: Error,
+      req: Request,
+      res: Response,
+      next: NextFunction
+    ) {
+      let error = errorHandlerUtil.handle(err);
       res.status(error.code).json({ message: error.message });
     });
   };

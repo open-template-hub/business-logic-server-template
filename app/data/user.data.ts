@@ -1,5 +1,5 @@
 /**
- * @description holds user model
+ * @description holds user data model
  */
 
 import mongoose from 'mongoose';
