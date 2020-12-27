@@ -1,19 +1,31 @@
+/**
+ * @description holds product repository
+ */
+
 import { ProductDataModel } from '../data/product.data';
 import { Product } from '../interface/product.interface';
 
 export class ProductRepository {
   private dataModel: any = null;
 
+  /**
+   * initializes repository
+   * @param connection db connection
+   */
   initialize = async (connection: any) => {
     this.dataModel = await new ProductDataModel().getDataModel(connection);
     return this;
   };
 
+  /**
+   * gets all products
+   * @returns product list
+   */
   getAllProducts = async () => {
     try {
       let list = await this.dataModel.find();
       if (list != null) {
-        list = list.map((u) => {
+        list = list.map((u: Product) => {
           return u;
         });
       }
@@ -24,7 +36,12 @@ export class ProductRepository {
     }
   };
 
-  getProductById = async (product_id) => {
+  /**
+   * gets product by product id
+   * @param product_id product id
+   * @returns product
+   */
+  getProductById = async (product_id: string) => {
     try {
       return await this.dataModel.find({ product_id });
     } catch (error) {
@@ -33,6 +50,11 @@ export class ProductRepository {
     }
   };
 
+  /**
+   * creates product
+   * @param product product
+   * @returns product
+   */
   createProduct = async (product: Product) => {
     try {
       return await this.dataModel.create({

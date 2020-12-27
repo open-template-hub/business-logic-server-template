@@ -1,3 +1,7 @@
+/**
+ * @description holds user controller
+ */
+
 import { Context } from '../interface/context.interface';
 import { UserRepository } from '../repository/user.repository';
 import { User } from '../interface/user.interface';
@@ -36,7 +40,7 @@ export class UserController {
    * @returns created user
    */
   createUser = async (context: Context, user: User) => {
-    console.log("> CreateUser:: Username: ", user.username);
+    console.log('> CreateUser:: Username: ', user.username);
     const userRepository = await new UserRepository().initialize(
       context.mongodb_provider.getConnection()
     );
@@ -50,7 +54,7 @@ export class UserController {
    * @param username username
    * @returns deleted user or null
    */
-  deleteUser = async (context: Context, username) => {
+  deleteUser = async (context: Context, username: string) => {
     const userRepository = await new UserRepository().initialize(
       context.mongodb_provider.getConnection()
     );
@@ -79,7 +83,7 @@ export class UserController {
    * @param limit limit
    * @returns users or null
    */
-  search = async (context: Context, prefix, limit?: number) => {
+  search = async (context: Context, prefix: string, limit?: number) => {
     const userRepository = await new UserRepository().initialize(
       context.mongodb_provider.getConnection()
     );

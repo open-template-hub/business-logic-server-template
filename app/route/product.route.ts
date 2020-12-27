@@ -31,7 +31,7 @@ router.get(subRoutes.root, async (req: Request, res: Response) => {
   // Get a single Product detail
   let product = await productController.getProduct(
     res.locals.ctx,
-    req.query.product_id
+    req.query.product_id as string
   );
   res.status(ResponseCode.OK).json(product);
 });
