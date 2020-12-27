@@ -1,3 +1,7 @@
+/**
+ * @description holds product controller
+ */
+
 import { ProductRepository } from '../repository/product.repository';
 import { Context } from '../interface/context.interface';
 import { Product } from '../interface/product.interface';
@@ -22,7 +26,7 @@ export class ProductController {
    * @param product_id
    * @returns product or null
    */
-  getProduct = async (context: Context, product_id) => {
+  getProduct = async (context: Context, product_id: string) => {
     const productRepository = await new ProductRepository().initialize(
       context.mongodb_provider.getConnection()
     );

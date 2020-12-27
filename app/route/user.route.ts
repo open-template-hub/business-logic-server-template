@@ -53,7 +53,7 @@ router.get(subRoutes.search, async (req: Request, res: Response) => {
   }
   let users = await userController.search(
     res.locals.ctx,
-    req.query.q,
+    req.query.q as string,
     limit > maxLimit ? maxLimit : limit
   );
   res.status(ResponseCode.OK).json(users);
@@ -78,10 +78,13 @@ router.get(subRoutes.root, async (req: Request, res: Response) => {
 
 router.post(subRoutes.root, async (req: Request, res: Response) => {
   // Create new User
-  let user = await userController.createUser(res.locals.ctx as Context, {
-    username: req.body.username,
-    payload: req.body.payload,
-  } as User);
+  let user = await userController.createUser(
+    res.locals.ctx as Context,
+    {
+      username: req.body.username,
+      payload: req.body.payload,
+    } as User
+  );
   res.status(ResponseCode.CREATED).json(user);
 });
 
@@ -98,7 +101,7 @@ router.delete(subRoutes.root, async (req: Request, res: Response) => {
   // Delete a User
   let user = await userController.deleteUser(
     res.locals.ctx,
-    req.query.username
+    req.query.username as string
   );
   res.status(ResponseCode.OK).json(user);
 });
@@ -107,10 +110,7 @@ router.delete(subRoutes.root, async (req: Request, res: Response) => {
 router.get(subRoutes.me, async (req: Request, res: Response) => {
   // Get a single User detail
   const context = res.locals.ctx as Context;
-  let user = await userController.getUser(
-    context,
-    context.username
-  );
+  let user = await userController.getUser(context, context.username);
   res.status(ResponseCode.OK).json(user);
 });
 
@@ -137,9 +137,6 @@ router.put(subRoutes.me, async (req: Request, res: Response) => {
 router.delete(subRoutes.me, async (req: Request, res: Response) => {
   // Delete a User
   const context = res.locals.ctx as Context;
-  let user = await userController.deleteUser(
-    context,
-    context.username
-  );
+  let user = await userController.deleteUser(context, context.username);
   res.status(ResponseCode.OK).json(user);
 });
