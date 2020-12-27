@@ -63,6 +63,8 @@ ACCESS_TOKEN_SECRET={Access Token Secret}
 MONGODB_URI={MongoDB Connection String}
 
 RESPONSE_ENCRYPTION_SECRET={Response Encryption Secret}
+
+MONGODB_CONNECTION_LIMIT={Connection Limit In Pool}
 ```
 
 ## Http Requests
