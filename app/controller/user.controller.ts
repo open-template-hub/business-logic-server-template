@@ -2,7 +2,7 @@
  * @description holds user controller
  */
 
-import { Context } from '../interface/context.interface';
+import { Context } from '@open-template-hub/common';
 import { UserRepository } from '../repository/user.repository';
 import { User } from '../interface/user.interface';
 
