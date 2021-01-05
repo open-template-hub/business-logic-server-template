@@ -4,10 +4,9 @@
 
 import Router from 'express-promise-router';
 import { Request, Response } from 'express';
-import { ResponseCode } from '../constant';
+import { ResponseCode, Context } from '@open-template-hub/common';
 import { UserController } from '../controller/user.controller';
 import { User } from '../interface/user.interface';
-import { Context } from '../interface/context.interface';
 
 const subRoutes = {
   root: '/',

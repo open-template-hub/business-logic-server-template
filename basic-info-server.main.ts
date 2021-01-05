@@ -6,8 +6,7 @@ import cors from 'cors';
 import { Routes } from './app/route/index.route';
 import express from 'express';
 import bodyParser from 'body-parser';
-import { DebugLogUtil } from './app/util/debug-log.util';
-import { UsageUtil } from './app/util/usage.util';
+import { DebugLogUtil, UsageUtil } from '@open-template-hub/common';
 
 const debugLogUtil = new DebugLogUtil();
 

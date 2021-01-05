@@ -3,7 +3,7 @@
  */
 
 import { ProductRepository } from '../repository/product.repository';
-import { Context } from '../interface/context.interface';
+import { Context } from '@open-template-hub/common';
 import { Product } from '../interface/product.interface';
 
 export class ProductController {
