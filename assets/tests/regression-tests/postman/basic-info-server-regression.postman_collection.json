@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f3390a33-7edb-436f-a68f-512856b09d7e",
+		"_postman_id": "4cbfd1a5-724e-433a-9605-699506e634c4",
 		"name": "basic-info-server-regression",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,18 +17,26 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4040528a-e696-4793-b22f-8109337886a1",
 										"exec": [
+											"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+											"const encrypted = JSON.parse(pm.response.text());\r",
+											"const decrypted = CryptoJS.RC4.decrypt(\r",
+											"      encrypted,\r",
+											"      responseEncryptionSecret\r",
+											"    ).toString(CryptoJS.enc.Utf8);\r",
+											"\r",
+											"console.log({decrypted});\r",
+											"\r",
 											"pm.test(\"Response code is CREATED\", function () {\r",
 											"    pm.response.to.have.status(201);\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Response contains Username\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include('username');\r",
+											"    pm.expect(decrypted).to.include('username');\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Response contains Payload Item\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+											"    pm.expect(decrypted).to.include('payload-item');\r",
 											"});\r",
 											""
 										],
@@ -38,7 +46,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "47366618-2512-44aa-b219-4e9b4782b480",
 										"exec": [
 											""
 										],
@@ -87,18 +94,26 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "fb9a32d1-3bdd-4995-9eae-61953695f4ea",
 										"exec": [
+											"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+											"const encrypted = JSON.parse(pm.response.text());\r",
+											"const decrypted = CryptoJS.RC4.decrypt(\r",
+											"      encrypted,\r",
+											"      responseEncryptionSecret\r",
+											"    ).toString(CryptoJS.enc.Utf8);\r",
+											"\r",
+											"console.log({decrypted});\r",
+											"\r",
 											"pm.test(\"Response code is OK\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Response contains Username\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include('username');\r",
+											"    pm.expect(decrypted).to.include('username');\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Response contains Payload Item\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+											"    pm.expect(decrypted).to.include('payload-item');\r",
 											"});\r",
 											""
 										],
@@ -108,7 +123,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "b45e2e85-5854-4e6a-8e86-4f9050b1b5af",
 										"exec": [
 											""
 										],
@@ -157,18 +171,26 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "034f2745-3f42-4035-8e9c-fd883532b295",
 										"exec": [
+											"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+											"const encrypted = JSON.parse(pm.response.text());\r",
+											"const decrypted = CryptoJS.RC4.decrypt(\r",
+											"      encrypted,\r",
+											"      responseEncryptionSecret\r",
+											"    ).toString(CryptoJS.enc.Utf8);\r",
+											"\r",
+											"console.log({decrypted});\r",
+											"\r",
 											"pm.test(\"Response code is OK\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Response contains Username\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include('username');\r",
+											"    pm.expect(decrypted).to.include('username');\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Response contains Payload Item\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+											"    pm.expect(decrypted).to.include('payload-item');\r",
 											"});\r",
 											""
 										],
@@ -178,7 +200,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "779cbf4c-ffe0-48e7-b842-894426fcc235",
 										"exec": [
 											""
 										],
@@ -230,18 +251,26 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "868c9418-4e35-420a-9a5b-662c90b5055c",
 										"exec": [
+											"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+											"const encrypted = JSON.parse(pm.response.text());\r",
+											"const decrypted = CryptoJS.RC4.decrypt(\r",
+											"      encrypted,\r",
+											"      responseEncryptionSecret\r",
+											"    ).toString(CryptoJS.enc.Utf8);\r",
+											"\r",
+											"console.log({decrypted});\r",
+											"\r",
 											"pm.test(\"Response code is OK\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Response contains Username\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include('username');\r",
+											"    pm.expect(decrypted).to.include('username');\r",
 											"});\r",
 											"\r",
 											"pm.test(\"Response contains Payload Item\", function () {\r",
-											"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+											"    pm.expect(decrypted).to.include('payload-item');\r",
 											"});\r",
 											""
 										],
@@ -251,7 +280,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "d6806254-be1f-4823-b8dd-2ee5077dd86e",
 										"exec": [
 											""
 										],
@@ -294,9 +322,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Create User Success [201]",
@@ -304,18 +330,26 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8cfa635a-d5c6-4e80-9a80-d3e5db55b729",
 								"exec": [
+									"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+									"const encrypted = JSON.parse(pm.response.text());\r",
+									"const decrypted = CryptoJS.RC4.decrypt(\r",
+									"      encrypted,\r",
+									"      responseEncryptionSecret\r",
+									"    ).toString(CryptoJS.enc.Utf8);\r",
+									"\r",
+									"console.log({decrypted});\r",
+									"\r",
 									"pm.test(\"Response code is CREATED\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Username\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('username');\r",
+									"    pm.expect(decrypted).to.include('username');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Payload Item\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+									"    pm.expect(decrypted).to.include('payload-item');\r",
 									"});\r",
 									""
 								],
@@ -325,7 +359,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "c9b7e542-5cbc-4449-b1a4-46e0b0213c64",
 								"exec": [
 									"pm.environment.set(\"current-index\", Number(pm.environment.get(\"current-index\")) + 1);"
 								],
@@ -373,18 +406,26 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "162a8e8c-1051-49d6-8045-71c30803751a",
 								"exec": [
+									"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+									"const encrypted = JSON.parse(pm.response.text());\r",
+									"const decrypted = CryptoJS.RC4.decrypt(\r",
+									"      encrypted,\r",
+									"      responseEncryptionSecret\r",
+									"    ).toString(CryptoJS.enc.Utf8);\r",
+									"\r",
+									"console.log({decrypted});\r",
+									"\r",
 									"pm.test(\"Response code is OK\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Username\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('username');\r",
+									"    pm.expect(decrypted).to.include('username');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Payload Item\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+									"    pm.expect(decrypted).to.include('payload-item');\r",
 									"});\r",
 									""
 								],
@@ -394,7 +435,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "82d5b058-c270-4d1f-b584-56dc2643867b",
 								"exec": [
 									""
 								],
@@ -442,18 +482,26 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "61193213-1562-449d-bd75-2bb176a3ad7d",
 								"exec": [
+									"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+									"const encrypted = JSON.parse(pm.response.text());\r",
+									"const decrypted = CryptoJS.RC4.decrypt(\r",
+									"      encrypted,\r",
+									"      responseEncryptionSecret\r",
+									"    ).toString(CryptoJS.enc.Utf8);\r",
+									"\r",
+									"console.log({decrypted});\r",
+									"\r",
 									"pm.test(\"Response code is OK\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Username\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('username');\r",
+									"    pm.expect(decrypted).to.include('username');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Payload Item\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+									"    pm.expect(decrypted).to.include('payload-item');\r",
 									"});\r",
 									""
 								],
@@ -463,7 +511,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "8a9ba1b3-29b1-44fb-9be0-23f575a30b56",
 								"exec": [
 									""
 								],
@@ -520,18 +567,26 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a89a8ae3-ec04-48c8-83f4-ab554d5e4597",
 								"exec": [
+									"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+									"const encrypted = JSON.parse(pm.response.text());\r",
+									"const decrypted = CryptoJS.RC4.decrypt(\r",
+									"      encrypted,\r",
+									"      responseEncryptionSecret\r",
+									"    ).toString(CryptoJS.enc.Utf8);\r",
+									"\r",
+									"console.log({decrypted});\r",
+									"\r",
 									"pm.test(\"Response code is OK\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Username\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('username');\r",
+									"    pm.expect(decrypted).to.include('username');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Payload Item\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+									"    pm.expect(decrypted).to.include('payload-item');\r",
 									"});\r",
 									""
 								],
@@ -541,7 +596,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "f3bcb351-cdce-4172-8f19-b81cb8439221",
 								"exec": [
 									""
 								],
@@ -592,14 +646,22 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "09a2beea-7800-40cd-8845-2a339709075f",
 								"exec": [
+									"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+									"const encrypted = JSON.parse(pm.response.text());\r",
+									"const decrypted = CryptoJS.RC4.decrypt(\r",
+									"      encrypted,\r",
+									"      responseEncryptionSecret\r",
+									"    ).toString(CryptoJS.enc.Utf8);\r",
+									"\r",
+									"console.log({decrypted});\r",
+									"\r",
 									"pm.test(\"Response code is OK\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Username\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('username');\r",
+									"    pm.expect(decrypted).to.include('username');\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -608,7 +670,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2da602b7-98a1-4595-8685-408ae87d3db4",
 								"exec": [
 									""
 								],
@@ -663,18 +724,26 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "821b9d82-a6ee-4804-a691-7ee818d8b588",
 								"exec": [
+									"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+									"const encrypted = JSON.parse(pm.response.text());\r",
+									"const decrypted = CryptoJS.RC4.decrypt(\r",
+									"      encrypted,\r",
+									"      responseEncryptionSecret\r",
+									"    ).toString(CryptoJS.enc.Utf8);\r",
+									"\r",
+									"console.log({decrypted});\r",
+									"\r",
 									"pm.test(\"Response code is OK\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Username\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('username');\r",
+									"    pm.expect(decrypted).to.include('username');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Payload Item\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+									"    pm.expect(decrypted).to.include('payload-item');\r",
 									"});\r",
 									""
 								],
@@ -684,7 +753,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "e192f03a-0f8f-4dc5-8e66-7bc461e91533",
 								"exec": [
 									""
 								],
@@ -736,18 +804,26 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "23e2ddd7-e9b7-47a1-aca8-d7114ea37b34",
 								"exec": [
+									"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+									"const encrypted = JSON.parse(pm.response.text());\r",
+									"const decrypted = CryptoJS.RC4.decrypt(\r",
+									"      encrypted,\r",
+									"      responseEncryptionSecret\r",
+									"    ).toString(CryptoJS.enc.Utf8);\r",
+									"\r",
+									"console.log({decrypted});\r",
+									"\r",
 									"pm.test(\"Response code is OK\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Username\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('username');\r",
+									"    pm.expect(decrypted).to.include('username');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Payload Item\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+									"    pm.expect(decrypted).to.include('payload-item');\r",
 									"});\r",
 									""
 								],
@@ -757,7 +833,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "f86ed806-59bd-4b10-a8e9-e2d1f97ad9fb",
 								"exec": [
 									""
 								],
@@ -805,8 +880,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Product",
@@ -817,26 +891,34 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6f8ed7bd-f9eb-4b58-9d55-801d1e244029",
 								"exec": [
+									"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+									"const encrypted = JSON.parse(pm.response.text());\r",
+									"const decrypted = CryptoJS.RC4.decrypt(\r",
+									"      encrypted,\r",
+									"      responseEncryptionSecret\r",
+									"    ).toString(CryptoJS.enc.Utf8);\r",
+									"\r",
+									"console.log({decrypted});\r",
+									"\r",
 									"pm.test(\"Response code is CREATED\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Product Id\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('product_id');\r",
+									"    pm.expect(decrypted).to.include('product_id');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Product Name\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('name');\r",
+									"    pm.expect(decrypted).to.include('name');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Product Description\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('description');\r",
+									"    pm.expect(decrypted).to.include('description');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Payload Item\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+									"    pm.expect(decrypted).to.include('payload-item');\r",
 									"});\r",
 									""
 								],
@@ -846,7 +928,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "46eaeffb-74a0-4c84-ad9a-6eafb2cb388a",
 								"exec": [
 									"pm.environment.set(\"current-product-index\", Number(pm.environment.get(\"current-product-index\")) + 1);"
 								],
@@ -895,26 +976,34 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e9024cf9-bea0-41e3-bb52-7065c59820fb",
 								"exec": [
+									"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+									"const encrypted = JSON.parse(pm.response.text());\r",
+									"const decrypted = CryptoJS.RC4.decrypt(\r",
+									"      encrypted,\r",
+									"      responseEncryptionSecret\r",
+									"    ).toString(CryptoJS.enc.Utf8);\r",
+									"\r",
+									"console.log({decrypted});\r",
+									"\r",
 									"pm.test(\"Response code is OK\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Product Id\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('product_id');\r",
+									"    pm.expect(decrypted).to.include('product_id');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Product Name\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('name');\r",
+									"    pm.expect(decrypted).to.include('name');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Product Description\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('description');\r",
+									"    pm.expect(decrypted).to.include('description');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Payload Item\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+									"    pm.expect(decrypted).to.include('payload-item');\r",
 									"});\r",
 									""
 								],
@@ -924,7 +1013,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "7a251c1d-d17b-42eb-9ec6-6f950de780af",
 								"exec": [
 									""
 								],
@@ -964,26 +1052,34 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8205a451-212a-4caa-9a3f-947c60e0db19",
 								"exec": [
+									"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+									"const encrypted = JSON.parse(pm.response.text());\r",
+									"const decrypted = CryptoJS.RC4.decrypt(\r",
+									"      encrypted,\r",
+									"      responseEncryptionSecret\r",
+									"    ).toString(CryptoJS.enc.Utf8);\r",
+									"\r",
+									"console.log({decrypted});\r",
+									"\r",
 									"pm.test(\"Response code is OK\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Product Id\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('product_id');\r",
+									"    pm.expect(decrypted).to.include('product_id');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Product Name\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('name');\r",
+									"    pm.expect(decrypted).to.include('name');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Product Description\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('description');\r",
+									"    pm.expect(decrypted).to.include('description');\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response contains Payload Item\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include('payload-item');\r",
+									"    pm.expect(decrypted).to.include('payload-item');\r",
 									"});\r",
 									""
 								],
@@ -993,7 +1089,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "68527a1c-dc61-4030-8fe0-310c28b8e413",
 								"exec": [
 									""
 								],
@@ -1032,9 +1127,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
