@@ -48,6 +48,8 @@ jobs:
       - run: npm install
       - run: npm run-script postman
       - run: |
-          git add .
-          git commit -m "Upgdate regression environment"
+          git config --global user.name 'fatihturker'
+          git config --global user.email 'fatihturker35@gmail.com'
+          git remote set-url origin https://${{ secrets.MASTER_BRANCH_ACCESS_TOKEN }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git commit -am "Automated report"
           git push
