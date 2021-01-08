@@ -52,10 +52,10 @@ jobs:
       - name: Run POSTMAN collection
         run: |
           newman run ./assets/tests/regression-tests/postman/basic-info-server-regression.postman_collection.json -e ./assets/tests/regression-tests/postman/basic-info-server-regression.postman_environment.json -r htmlextra --reporter-htmlextra-export ./assets/test-results/postman.html --reporter-htmlextra-darkTheme  > ./assets/test-results/postman-dark.html
-
+      
       # Upload the contents of Test Results directory to workspace
       - name: Output the run Details
         uses: actions/upload-artifact@v2
         with:
-          token: ${{ secrets.MASTER_BRANCH_ACCESS_TOKEN }}
+          name: RunReports
           path: ./assets/test-results
