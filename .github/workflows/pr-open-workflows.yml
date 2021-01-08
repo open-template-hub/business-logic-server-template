@@ -45,6 +45,7 @@ jobs:
           npm install -g newman-reporter-htmlextra
 
       # Run postman command
+      - run: npm install
       - run: npm run-script postman
 
       # Upload the contents of Test Results directory to workspace
