@@ -57,6 +57,5 @@ jobs:
       - name: Output the run Details
         uses: actions/upload-artifact@v2
         with:
-          name: RunReports
-          path: ./assets/test-results
           token: ${{ secrets.MASTER_BRANCH_ACCESS_TOKEN }}
+          path: ./assets/test-results
