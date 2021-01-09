@@ -57,4 +57,4 @@ jobs:
           git remote set-url origin https://${{ secrets.MASTER_BRANCH_ACCESS_TOKEN }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add .
           git commit -am "Automated report"
-          git push origin develop
+          git push
