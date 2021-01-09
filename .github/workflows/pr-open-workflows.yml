@@ -61,5 +61,5 @@ jobs:
         run: |
           git add .
           git commit -m "Automated report"
-          git pull
+          git pull origin develop
           git push --set-upstream origin develop
