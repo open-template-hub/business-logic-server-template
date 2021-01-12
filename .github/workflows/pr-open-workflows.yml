@@ -44,13 +44,6 @@ jobs:
           npm install -g newman
           npm install -g newman-reporter-htmlextra
 
-      - name: Pre-git commands
-        run: |
-          git config --global user.name 'fatihturker'
-          git config --global user.email 'fatihturker35@gmail.com'
-          git remote set-url origin https://${{ secrets.MASTER_BRANCH_ACCESS_TOKEN }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git checkout -b develop
-
       # Run postman command
       - name: Run Postman Regression
         run: |
@@ -61,5 +54,4 @@ jobs:
         run: |
           git add .
           git commit -m "Automated report"
-          git pull origin develop
-          git push --set-upstream origin develop
+          git push
