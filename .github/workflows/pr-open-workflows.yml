@@ -56,4 +56,4 @@ jobs:
           git config --global user.email 'fatihturker35@gmail.com'
           git add .
           git commit -m "Automated report"
-          git push
+          git push origin HEAD:develop
