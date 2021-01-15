@@ -1,8 +1,8 @@
 name: PR Open Against Master Branch Workflows
 on:
-pull_request:
-  branches:
-    - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   postman-test-run:
