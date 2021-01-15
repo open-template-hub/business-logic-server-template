@@ -1,6 +1,7 @@
 name: PR Open Against Master Branch Workflows
 on:
   pull_request:
+    types: [opened]
     branches:
       - master
 
