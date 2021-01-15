@@ -39,3 +39,9 @@ jobs:
           git add .
           git commit -m "Automated report"
           git push origin HEAD:develop --force
+
+      - name: Output the Run Details
+        uses: actions/upload-artifact@v2
+        with: 
+          name: PostmanReports
+          path: ./assets/test-results
