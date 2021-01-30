@@ -14,7 +14,7 @@ const subRoutes = {
   import: '/import',
 };
 
-export const adminRoutes = [subRoutes.all, subRoutes.import];
+export const adminRoutes = [subRoutes.import];
 
 export const router = Router();
 
