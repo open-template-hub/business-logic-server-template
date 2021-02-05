@@ -26,3 +26,40 @@
          env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        - run: cat ./package.json
+  postman-test-run:
+    name: "Postman Regression Test"
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.MASTER_BRANCH_ACCESS_TOKEN }}
+
+      # INstall Node on the runner
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      # Install the newman command line utility and also install the html extra reporter
+      - name: Install newman
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-htmlextra
+      # Run postman command
+      - name: Run Postman Regression
+        run: |
+          npm install
+          npm run-script postman
+      - name: Commit Report
+        run: |
+          git config --global user.name 'fatihturker'
+          git config --global user.email 'fatihturker35@gmail.com'
+          git add .
+          git commit -m "Automated report"
+          git push origin HEAD:develop --force
+      - name: Output the Run Details
+        uses: actions/upload-artifact@v2
+        with: 
+          name: PostmanReports
+          path: ./assets/test-results
