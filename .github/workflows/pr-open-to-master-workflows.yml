@@ -27,6 +27,7 @@
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        - run: cat ./package.json
   postman-test-run:
+    name: "Postman Regression Test"
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
