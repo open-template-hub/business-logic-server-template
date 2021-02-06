@@ -54,12 +54,11 @@
           npm run-script postman
       - name: Commit Report
         run: |
-          git pull
           git config --global user.name 'fatihturker'
           git config --global user.email 'fatihturker35@gmail.com'
           git add .
           git commit -m "Automated report"
-          git push
+          git push origin HEAD:develop --force
       - name: Output the Run Details
         uses: actions/upload-artifact@v2
         with: 
