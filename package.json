@@ -1,6 +1,6 @@
 {
  "name": "basic-info-server",
- "version": "2.0.18",
+ "version": "2.0.25",
  "description": "Template Basic Info Server",
  "main": "basic-info-server.main.ts",
  "license": "MIT",
@@ -25,7 +25,7 @@
  "scripts": {
   "start": "ts-node basic-info-server.main.ts",
   "devStart": "nodemon --exec DEBUG=* ts-node basic-info-server.main.ts",
-  "postman": "newman run ./assets/tests/regression-tests/postman/basic-info-server-regression.postman_collection.json -e ./assets/tests/regression-tests/postman/basic-info-server-regression.postman_environment.json --export-environment ./assets/tests/regression-tests/postman/basic-info-server-regression.postman_environment.json -r htmlextra --reporter-htmlextra-export ./assets/test-results/postman.html --reporter-htmlextra-darkTheme  > ./assets/test-results/postman-dark.html"
+  "postman": "newman run ./assets/tests/regression-tests/postman/basic-info-server-regression.postman_collection.json -e ./assets/tests/regression-tests/postman/basic-info-server-regression.postman_environment.json -r htmlextra --reporter-htmlextra-export ./assets/test-results/postman.html --reporter-htmlextra-darkTheme  > ./assets/test-results/postman-dark.html"
  },
  "engines": {
   "node": "12.13.1",

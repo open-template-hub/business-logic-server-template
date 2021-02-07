@@ -68,4 +68,18 @@ export class ProductRepository {
       throw error;
     }
   };
+
+  /**
+   * deletes product by product id
+   * @param product_id product id
+   * @returns deleted product
+   */
+  deleteProductById = async (product_id: string) => {
+    try {
+      return await this.dataModel.findOneAndDelete({ product_id });
+    } catch (error) {
+      console.error('> deleteProductById error: ', error);
+      throw error;
+    }
+  };
 }

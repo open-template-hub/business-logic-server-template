@@ -47,4 +47,18 @@ export class ProductController {
 
     return await productRepository.createProduct(product);
   };
+
+  /**
+   * deletes product
+   * @param context
+   * @param product_id
+   * @returns deleted product
+   */
+  deleteProduct = async (context: Context, product_id: string) => {
+    const productRepository = await new ProductRepository().initialize(
+      context.mongodb_provider.getConnection()
+    );
+
+    return await productRepository.deleteProductById(product_id);
+  };
 }
