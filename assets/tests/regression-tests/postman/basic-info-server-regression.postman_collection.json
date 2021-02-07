@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4cbfd1a5-724e-433a-9605-699506e634c4",
+		"_postman_id": "574fa986-2152-4be8-9f7a-549c4ca04376",
 		"name": "basic-info-server-regression",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -958,13 +958,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{uri}}/product/import",
+							"raw": "{{uri}}/product/admin",
 							"host": [
 								"{{uri}}"
 							],
 							"path": [
 								"product",
-								"import"
+								"admin"
 							]
 						}
 					},
@@ -1026,7 +1026,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{admin-auth-token}}",
+									"value": "{{public-auth-token}}",
 									"type": "string"
 								}
 							]
@@ -1116,6 +1116,89 @@
 							],
 							"path": [
 								"product"
+							],
+							"query": [
+								{
+									"key": "product_id",
+									"value": "{{product-name}}{{current-product-index}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product Success [200]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseEncryptionSecret = pm.environment.get(\"response-encryption-secret\");\r",
+									"const encrypted = JSON.parse(pm.response.text());\r",
+									"const decrypted = CryptoJS.RC4.decrypt(\r",
+									"      encrypted,\r",
+									"      responseEncryptionSecret\r",
+									"    ).toString(CryptoJS.enc.Utf8);\r",
+									"\r",
+									"console.log({decrypted});\r",
+									"\r",
+									"pm.test(\"Response code is OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains Product Id\", function () {\r",
+									"    pm.expect(decrypted).to.include('product_id');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains Payload Item\", function () {\r",
+									"    pm.expect(decrypted).to.include('payload-item');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin-auth-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{uri}}/product/admin?product_id={{product-name}}{{current-product-index}}",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"product",
+								"admin"
 							],
 							"query": [
 								{

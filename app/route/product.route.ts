@@ -4,17 +4,17 @@
 
 import Router from 'express-promise-router';
 import { Request, Response } from 'express';
-import { ResponseCode } from '@open-template-hub/common';
+import { Context, ResponseCode } from '@open-template-hub/common';
 import { ProductController } from '../controller/product.controller';
 import { Product } from '../interface/product.interface';
 
 const subRoutes = {
   root: '/',
   all: '/all',
-  import: '/import',
+  admin: '/admin',
 };
 
-export const adminRoutes = [subRoutes.import];
+export const adminRoutes = [subRoutes.admin];
 
 export const router = Router();
 
@@ -36,7 +36,7 @@ router.get(subRoutes.root, async (req: Request, res: Response) => {
   res.status(ResponseCode.OK).json(product);
 });
 
-router.post(subRoutes.import, async (req: Request, res: Response) => {
+router.post(subRoutes.admin, async (req: Request, res: Response) => {
   // Create new Product
   let product = await productController.createProduct(res.locals.ctx, {
     product_id: req.body.product_id,
@@ -45,4 +45,14 @@ router.post(subRoutes.import, async (req: Request, res: Response) => {
     payload: req.body.payload,
   } as Product);
   res.status(ResponseCode.CREATED).json(product);
+});
+
+router.delete(subRoutes.admin, async (req: Request, res: Response) => {
+  // Delete a Product
+  const context = res.locals.ctx as Context;
+  let product = await productController.deleteProduct(
+    context,
+    req.query.product_id as string
+  );
+  res.status(ResponseCode.OK).json(product);
 });
