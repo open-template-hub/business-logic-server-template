@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 
 export class UserDataModel {
   private readonly collectionName: string = 'user';
-  private dataSchema: mongoose.Schema;
+  private readonly dataSchema: mongoose.Schema;
 
   constructor() {
     /**
