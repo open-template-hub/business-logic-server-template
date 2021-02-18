@@ -12,10 +12,10 @@ Content-Type: application/json
 Authorization: Bearer token
 
 {
- "product_id": "product_id",
- "name": "Product 1",
- "description": "product description",
- "payload": {
-  "premium_content": "premium content!"
- }
+  "product_id": "product_id",
+  "name": "Product 1",
+  "description": "product description",
+  "payload": {
+    "premium_content": "premium content!"
+  }
 }

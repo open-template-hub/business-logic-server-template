@@ -14,11 +14,11 @@ Content-Type: application/json
 Authorization: Bearer token
 
 {
- "username": "username",
- "payload": {
-  "firstName": "First",
-  "lastName": "Last"
- }
+  "username": "username",
+  "payload": {
+    "firstName": "First",
+    "lastName": "Last"
+  }
 }
 
 ### Update User
@@ -27,11 +27,11 @@ Content-Type: application/json
 Authorization: Bearer token
 
 {
- "username": "username",
- "payload": {
-  "firstName": "First",
-  "lastName": "Last"
- }
+  "username": "username",
+  "payload": {
+    "firstName": "First",
+    "lastName": "Last"
+  }
 }
 
 ### Delete User With Username
@@ -49,10 +49,10 @@ Content-Type: application/json
 Authorization: Bearer token
 
 {
- "payload": {
-  "firstName": "First",
-  "lastName": "Last"
- }
+  "payload": {
+    "firstName": "First",
+    "lastName": "Last"
+  }
 }
 
 ### Update Me
@@ -61,10 +61,10 @@ Content-Type: application/json
 Authorization: Bearer token
 
 {
- "payload": {
-  "firstName": "First",
-  "lastName": "Last"
- }
+  "payload": {
+    "firstName": "First",
+    "lastName": "Last"
+  }
 }
 
 ### Delete Me
