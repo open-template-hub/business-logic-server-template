@@ -23,6 +23,7 @@ export class UserController {
   /**
    * gets user by id
    * @param context context
+   * @param username username
    * @returns user or null
    */
   getUser = async (context: Context, username: string) => {

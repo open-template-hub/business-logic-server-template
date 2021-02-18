@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 
 export class ProductDataModel {
   private readonly collectionName: string = 'product';
-  private dataSchema: mongoose.Schema;
+  private readonly dataSchema: mongoose.Schema;
 
   constructor() {
     /**

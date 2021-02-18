@@ -34,16 +34,16 @@ const subRoutes = {
 };
 
 export module Routes {
-  var mongodb_provider: MongoDbProvider;
-  var environment: Environment;
+  let mongodb_provider: MongoDbProvider;
+  let environment: Environment;
   const errorHandlerUtil = new ErrorHandlerUtil();
   const debugLogUtil = new DebugLogUtil();
-  var publicRoutes: string[] = [];
-  var adminRoutes: string[] = [];
+  let publicRoutes: string[] = [];
+  let adminRoutes: string[] = [];
 
   function populateRoutes(mainRoute: string, routes: Array<string>) {
-    var populated = Array<string>();
-    for (var i = 0; i < routes.length; i++) {
+    let populated = Array<string>();
+    for (let i = 0; i < routes.length; i++) {
       const s = routes[i];
       populated.push(mainRoute + (s === '/' ? '' : s));
     }
