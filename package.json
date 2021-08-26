@@ -1,7 +1,7 @@
 {
   "name": "basic-info-server-template",
   "description": "Basic Info Server Template for generic usage in Node.js",
-  "version": "2.0.25",
+  "version": "2.0.26",
   "license": "MIT",
   "main": "basic-info-server.main.ts",
   "scripts": {
