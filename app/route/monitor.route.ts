@@ -17,5 +17,6 @@ export const router = Router();
 
 router.get( subRoutes.alive, async ( req: Request, res: Response ) => {
   // checks status is alive
+  console.log("status check");
   res.status( ResponseCode.OK ).send();
 } );
