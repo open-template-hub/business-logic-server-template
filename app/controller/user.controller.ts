@@ -3,8 +3,8 @@
  */
 
 import { Context } from '@open-template-hub/common';
-import { UserRepository } from '../repository/user.repository';
 import { User } from '../interface/user.interface';
+import { UserRepository } from '../repository/user.repository';
 
 export class UserController {
   /**
@@ -12,9 +12,9 @@ export class UserController {
    * @param context context
    * @returns user list
    */
-  getAllUsers = async (context: Context) => {
+  getAllUsers = async ( context: Context ) => {
     const userRepository = await new UserRepository().initialize(
-      context.mongodb_provider.getConnection()
+        context.mongodb_provider.getConnection()
     );
 
     return await userRepository.getAllUsers();
@@ -26,12 +26,12 @@ export class UserController {
    * @param username username
    * @returns user or null
    */
-  getUser = async (context: Context, username: string) => {
+  getUser = async ( context: Context, username: string ) => {
     const userRepository = await new UserRepository().initialize(
-      context.mongodb_provider.getConnection()
+        context.mongodb_provider.getConnection()
     );
 
-    return await userRepository.getUserByUsername(username);
+    return await userRepository.getUserByUsername( username );
   };
 
   /**
@@ -40,13 +40,13 @@ export class UserController {
    * @param user user
    * @returns created user
    */
-  createUser = async (context: Context, user: User) => {
-    console.log('> CreateUser:: Username: ', user.username);
+  createUser = async ( context: Context, user: User ) => {
+    console.log( '> CreateUser:: Username: ', user.username );
     const userRepository = await new UserRepository().initialize(
-      context.mongodb_provider.getConnection()
+        context.mongodb_provider.getConnection()
     );
 
-    return await userRepository.createUser(user);
+    return await userRepository.createUser( user );
   };
 
   /**
@@ -55,12 +55,12 @@ export class UserController {
    * @param username username
    * @returns deleted user or null
    */
-  deleteUser = async (context: Context, username: string) => {
+  deleteUser = async ( context: Context, username: string ) => {
     const userRepository = await new UserRepository().initialize(
-      context.mongodb_provider.getConnection()
+        context.mongodb_provider.getConnection()
     );
 
-    return await userRepository.deleteUserByUsername(username);
+    return await userRepository.deleteUserByUsername( username );
   };
 
   /**
@@ -69,12 +69,12 @@ export class UserController {
    * @param user user
    * @returns updated user or null
    */
-  updateUser = async (context: Context, user: User) => {
+  updateUser = async ( context: Context, user: User ) => {
     const userRepository = await new UserRepository().initialize(
-      context.mongodb_provider.getConnection()
+        context.mongodb_provider.getConnection()
     );
 
-    return await userRepository.updateUser(user);
+    return await userRepository.updateUser( user );
   };
 
   /**
@@ -84,15 +84,15 @@ export class UserController {
    * @param limit limit
    * @returns users or null
    */
-  search = async (context: Context, prefix: string, limit?: number) => {
+  search = async ( context: Context, prefix: string, limit?: number ) => {
     const userRepository = await new UserRepository().initialize(
-      context.mongodb_provider.getConnection()
+        context.mongodb_provider.getConnection()
     );
 
-    if (!limit) {
+    if ( !limit ) {
       limit = 10;
     }
 
-    return await userRepository.searchUser(prefix, limit);
+    return await userRepository.searchUser( prefix, limit );
   };
 }

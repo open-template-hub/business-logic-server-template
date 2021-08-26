@@ -2,9 +2,9 @@
  * @description holds product controller
  */
 
-import { ProductRepository } from '../repository/product.repository';
 import { Context } from '@open-template-hub/common';
 import { Product } from '../interface/product.interface';
+import { ProductRepository } from '../repository/product.repository';
 
 export class ProductController {
   /**
@@ -12,9 +12,9 @@ export class ProductController {
    * @param context context
    * @returns product list
    */
-  getAllProducts = async (context: Context) => {
+  getAllProducts = async ( context: Context ) => {
     const productRepository = await new ProductRepository().initialize(
-      context.mongodb_provider.getConnection()
+        context.mongodb_provider.getConnection()
     );
 
     return await productRepository.getAllProducts();
@@ -26,12 +26,12 @@ export class ProductController {
    * @param product_id
    * @returns product or null
    */
-  getProduct = async (context: Context, product_id: string) => {
+  getProduct = async ( context: Context, product_id: string ) => {
     const productRepository = await new ProductRepository().initialize(
-      context.mongodb_provider.getConnection()
+        context.mongodb_provider.getConnection()
     );
 
-    return await productRepository.getProductById(product_id);
+    return await productRepository.getProductById( product_id );
   };
 
   /**
@@ -40,12 +40,12 @@ export class ProductController {
    * @param product
    * @returns created product
    */
-  createProduct = async (context: Context, product: Product) => {
+  createProduct = async ( context: Context, product: Product ) => {
     const productRepository = await new ProductRepository().initialize(
-      context.mongodb_provider.getConnection()
+        context.mongodb_provider.getConnection()
     );
 
-    return await productRepository.createProduct(product);
+    return await productRepository.createProduct( product );
   };
 
   /**
@@ -54,11 +54,11 @@ export class ProductController {
    * @param product_id
    * @returns deleted product
    */
-  deleteProduct = async (context: Context, product_id: string) => {
+  deleteProduct = async ( context: Context, product_id: string ) => {
     const productRepository = await new ProductRepository().initialize(
-      context.mongodb_provider.getConnection()
+        context.mongodb_provider.getConnection()
     );
 
-    return await productRepository.deleteProductById(product_id);
+    return await productRepository.deleteProductById( product_id );
   };
 }

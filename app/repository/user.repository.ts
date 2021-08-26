@@ -12,8 +12,8 @@ export class UserRepository {
    * initializes repository
    * @param connection db connection
    */
-  initialize = async (connection: any) => {
-    this.dataModel = await new UserDataModel().getDataModel(connection);
+  initialize = async ( connection: any ) => {
+    this.dataModel = await new UserDataModel().getDataModel( connection );
     return this;
   };
 
@@ -24,14 +24,14 @@ export class UserRepository {
   getAllUsers = async () => {
     try {
       let list = await this.dataModel.find();
-      if (list != null) {
-        list = list.map((u: User) => {
+      if ( list != null ) {
+        list = list.map( ( u: User ) => {
           return u;
-        });
+        } );
       }
       return list;
-    } catch (error) {
-      console.error('> getAllUsers error: ', error);
+    } catch ( error ) {
+      console.error( '> getAllUsers error: ', error );
       throw error;
     }
   };
@@ -41,11 +41,11 @@ export class UserRepository {
    * @param username username
    * @returns user
    */
-  getUserByUsername = async (username: string) => {
+  getUserByUsername = async ( username: string ) => {
     try {
-      return await this.dataModel.findOne({ username });
-    } catch (error) {
-      console.error('> getUserByUsername error: ', error);
+      return await this.dataModel.findOne( { username } );
+    } catch ( error ) {
+      console.error( '> getUserByUsername error: ', error );
       throw error;
     }
   };
@@ -55,14 +55,14 @@ export class UserRepository {
    * @param user user
    * @returns user
    */
-  createUser = async (user: User) => {
+  createUser = async ( user: User ) => {
     try {
-      return await this.dataModel.create({
+      return await this.dataModel.create( {
         username: user.username,
         payload: user.payload,
-      });
-    } catch (error) {
-      console.error('> createUser error: ', error);
+      } );
+    } catch ( error ) {
+      console.error( '> createUser error: ', error );
       throw error;
     }
   };
@@ -72,11 +72,11 @@ export class UserRepository {
    * @param username username
    * @returns deleted user
    */
-  deleteUserByUsername = async (username: string) => {
+  deleteUserByUsername = async ( username: string ) => {
     try {
-      return await this.dataModel.findOneAndDelete({ username });
-    } catch (error) {
-      console.error('> deleteUserByUsername error: ', error);
+      return await this.dataModel.findOneAndDelete( { username } );
+    } catch ( error ) {
+      console.error( '> deleteUserByUsername error: ', error );
       throw error;
     }
   };
@@ -86,15 +86,15 @@ export class UserRepository {
    * @param user user
    * @returns updated user
    */
-  updateUser = async (user: User) => {
+  updateUser = async ( user: User ) => {
     try {
       return await this.dataModel.findOneAndUpdate(
-        { username: user.username },
-        { payload: user.payload },
-        { new: true }
+          { username: user.username },
+          { payload: user.payload },
+          { new: true }
       );
-    } catch (error) {
-      console.error('> updateUser error: ', error);
+    } catch ( error ) {
+      console.error( '> updateUser error: ', error );
       throw error;
     }
   };
@@ -105,13 +105,13 @@ export class UserRepository {
    * @param limit limit
    * @returns user list
    */
-  searchUser = async (prefix: string, limit: number) => {
+  searchUser = async ( prefix: string, limit: number ) => {
     try {
       return await this.dataModel
-        .find({ username: { $regex: prefix, $options: 'i' } }, null, { limit })
-        .select('username -_id');
-    } catch (error) {
-      console.error('> searchUser error: ', error);
+      .find( { username: { $regex: prefix, $options: 'i' } }, null, { limit } )
+      .select( 'username -_id' );
+    } catch ( error ) {
+      console.error( '> searchUser error: ', error );
       throw error;
     }
   };
