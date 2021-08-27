@@ -2,7 +2,7 @@
  * @description holds product routes
  */
 
-import { Context, ResponseCode } from '@open-template-hub/common';
+import { ResponseCode } from '@open-template-hub/common';
 import { Request, Response } from 'express';
 import Router from 'express-promise-router';
 import { ProductController } from '../controller/product.controller';
