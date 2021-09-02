@@ -2,7 +2,7 @@
  * @description holds user routes
  */
 
-import { Context, ResponseCode } from '@open-template-hub/common';
+import { ResponseCode } from '@open-template-hub/common';
 import { Request, Response } from 'express';
 import Router from 'express-promise-router';
 import { UserController } from '../controller/user.controller';
@@ -65,20 +65,10 @@ router.get( subRoutes.all, async ( req: Request, res: Response ) => {
   res.status( ResponseCode.OK ).json( users );
 } );
 
-// User detail
-router.get( subRoutes.root, async ( req: Request, res: Response ) => {
-  // Get a single User detail
-  let user = await userController.getUser(
-      res.locals.ctx,
-      req.query.username as string
-  );
-  res.status( ResponseCode.OK ).json( user );
-} );
-
 router.post( subRoutes.root, async ( req: Request, res: Response ) => {
   // Create new User
   let user = await userController.createUser(
-      res.locals.ctx as Context,
+      res.locals.ctx,
       {
         username: req.body.username,
         payload: req.body.payload,
@@ -108,14 +98,14 @@ router.delete( subRoutes.root, async ( req: Request, res: Response ) => {
 // Me - Special case of User (gets the user info from access token)
 router.get( subRoutes.me, async ( req: Request, res: Response ) => {
   // Get a single User detail
-  const context = res.locals.ctx as Context;
+  const context = res.locals.ctx;
   let user = await userController.getUser( context, context.username );
   res.status( ResponseCode.OK ).json( user );
 } );
 
 router.post( subRoutes.me, async ( req: Request, res: Response ) => {
   // Create new User
-  const context = res.locals.ctx as Context;
+  const context = res.locals.ctx;
   let user = await userController.createUser( context, {
     username: context.username,
     payload: req.body.payload,
@@ -125,7 +115,7 @@ router.post( subRoutes.me, async ( req: Request, res: Response ) => {
 
 router.put( subRoutes.me, async ( req: Request, res: Response ) => {
   // Update a User
-  const context = res.locals.ctx as Context;
+  const context = res.locals.ctx;
   let user = await userController.updateUser( context, {
     username: context.username,
     payload: req.body.payload,
@@ -135,7 +125,7 @@ router.put( subRoutes.me, async ( req: Request, res: Response ) => {
 
 router.delete( subRoutes.me, async ( req: Request, res: Response ) => {
   // Delete a User
-  const context = res.locals.ctx as Context;
+  const context = res.locals.ctx;
   let user = await userController.deleteUser( context, context.username );
   res.status( ResponseCode.OK ).json( user );
 } );

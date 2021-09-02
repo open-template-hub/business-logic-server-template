@@ -17,7 +17,7 @@ export class UserController {
         context.mongodb_provider.getConnection()
     );
 
-    return await userRepository.getAllUsers();
+    return userRepository.getAllUsers();
   };
 
   /**
@@ -31,7 +31,7 @@ export class UserController {
         context.mongodb_provider.getConnection()
     );
 
-    return await userRepository.getUserByUsername( username );
+    return userRepository.getUserByUsername( username );
   };
 
   /**
@@ -46,7 +46,7 @@ export class UserController {
         context.mongodb_provider.getConnection()
     );
 
-    return await userRepository.createUser( user );
+    return userRepository.createUser( user );
   };
 
   /**
@@ -60,7 +60,7 @@ export class UserController {
         context.mongodb_provider.getConnection()
     );
 
-    return await userRepository.deleteUserByUsername( username );
+    return userRepository.deleteUserByUsername( username );
   };
 
   /**
@@ -74,7 +74,7 @@ export class UserController {
         context.mongodb_provider.getConnection()
     );
 
-    return await userRepository.updateUser( user );
+    return userRepository.updateUser( user );
   };
 
   /**
@@ -93,6 +93,6 @@ export class UserController {
       limit = 10;
     }
 
-    return await userRepository.searchUser( prefix, limit );
+    return userRepository.searchUser( prefix, limit );
   };
 }

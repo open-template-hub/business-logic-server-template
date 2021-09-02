@@ -2,7 +2,7 @@
  * @description holds product routes
  */
 
-import { Context, ResponseCode } from '@open-template-hub/common';
+import { ResponseCode } from '@open-template-hub/common';
 import { Request, Response } from 'express';
 import Router from 'express-promise-router';
 import { ProductController } from '../controller/product.controller';
@@ -49,7 +49,7 @@ router.post( subRoutes.admin, async ( req: Request, res: Response ) => {
 
 router.delete( subRoutes.admin, async ( req: Request, res: Response ) => {
   // Delete a Product
-  const context = res.locals.ctx as Context;
+  const context = res.locals.ctx;
   let product = await productController.deleteProduct(
       context,
       req.query.product_id as string

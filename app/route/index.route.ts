@@ -23,7 +23,7 @@ const subRoutes = {
   product: '/product',
 };
 
-export module Routes {
+export namespace Routes {
   let mongodb_provider: MongoDbProvider;
   let environment: Environment;
   const errorHandlerUtil = new ErrorHandlerUtil();
@@ -33,8 +33,7 @@ export module Routes {
 
   function populateRoutes( mainRoute: string, routes: Array<string> ) {
     let populated = Array<string>();
-    for ( let i = 0; i < routes.length; i++ ) {
-      const s = routes[ i ];
+    for ( const s of routes ) {
       populated.push( mainRoute + ( s === '/' ? '' : s ) );
     }
 

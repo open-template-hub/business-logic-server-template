@@ -17,7 +17,7 @@ export class ProductController {
         context.mongodb_provider.getConnection()
     );
 
-    return await productRepository.getAllProducts();
+    return productRepository.getAllProducts();
   };
 
   /**
@@ -31,7 +31,7 @@ export class ProductController {
         context.mongodb_provider.getConnection()
     );
 
-    return await productRepository.getProductById( product_id );
+    return productRepository.getProductById( product_id );
   };
 
   /**
@@ -45,7 +45,7 @@ export class ProductController {
         context.mongodb_provider.getConnection()
     );
 
-    return await productRepository.createProduct( product );
+    return productRepository.createProduct( product );
   };
 
   /**
@@ -59,6 +59,6 @@ export class ProductController {
         context.mongodb_provider.getConnection()
     );
 
-    return await productRepository.deleteProductById( product_id );
+    return productRepository.deleteProductById( product_id );
   };
 }
