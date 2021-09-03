@@ -2,7 +2,7 @@
   "name": "Basic Info Server Template",
   "description": "Basic Info Server Template for generic usage in Node.js",
   "repository": "https://github.com/open-template-hub/basic-info-server-template",
-  "logo": "https://github.com/open-template-hub/open-template-hub.github.io/blob/master/assets/logo/brand-logo.png?raw=true",
+  "logo": "https://raw.githubusercontent.com/open-template-hub/open-template-hub.github.io/master/assets/logo/brand-logo.png",
   "keywords": [
     "info",
     "information",
