@@ -1,6 +1,6 @@
 <p align="center">
    <a href="https://opentemplatehub.com">
-    <img src="https://github.com/open-template-hub/open-template-hub.github.io/blob/master/assets/logo/servers/basic-info-server-logo.png?raw=true" alt="Logo" width=200>
+    <img src="https://raw.githubusercontent.com/open-template-hub/open-template-hub.github.io/master/assets/logo/server/basic-info-server-logo.png" alt="Logo" width=200>
   </a>
 </p>
 
