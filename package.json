@@ -10,7 +10,7 @@
     "postmanDevelop": "newman run ./assets/tests/regression-tests/postman/basic-info-server-regression.postman_collection.json -e ./assets/tests/regression-tests/postman/basic-info-server-regression.postman_environment.json -r htmlextra --reporter-htmlextra-export ./assets/test-results/postman.html --reporter-htmlextra-darkTheme  > ./assets/test-results/postman-dark.html"
   },
   "dependencies": {
-    "@open-template-hub/common": "^2.0.2",
+    "@open-template-hub/common": "^2.1.12",
     "@types/cors": "^2.8.9",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.6",
