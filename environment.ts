@@ -15,7 +15,7 @@ export class Environment {
     var mqArgs = {
       messageQueueConnectionUrl: process.env.CLOUDAMQP_URL,
       basicInfoServerMessageQueueChannel:
-        process.env.ANALYTICS_SERVER_QUEUE_CHANNEL,
+        process.env.BASIC_INFO_SERVER_QUEUE_CHANNEL,
       orchestrationServerMessageQueueChannel:
         process.env.ORCHESTRATION_SERVER_QUEUE_CHANNEL,
     } as MqArgs;
