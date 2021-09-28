@@ -31,7 +31,7 @@ Routes.mount( app );
 // listen port
 const port: string = process.env.PORT || ( '4002' as string );
 app.listen( port, () => {
-  console.info( 'Basic Info Server is running on port: ', port );
+  console.info( 'Business Logic Server is running on port: ', port );
 
   const usageUtil = new UsageUtil();
   const memoryUsage = usageUtil.getMemoryUsage();
