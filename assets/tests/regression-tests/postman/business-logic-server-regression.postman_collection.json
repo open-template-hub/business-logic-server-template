@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "574fa986-2152-4be8-9f7a-549c4ca04376",
-		"name": "basic-info-server-regression",
+		"name": "business-logic-server-regression",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [

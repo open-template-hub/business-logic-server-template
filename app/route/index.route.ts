@@ -13,7 +13,7 @@ import {
 } from '@open-template-hub/common';
 import { NextFunction, Request, Response } from 'express';
 import { Environment } from '../../environment';
-import { BasicInfoQueueConsumer } from '../consumer/basic-info-queue.consumer';
+import { BusinessLogicQueueConsumer } from '../consumer/business-logic-queue.consumer';
 import {
   publicRoutes as monitorPublicRoutes,
   router as monitorRouter,
@@ -61,13 +61,13 @@ export namespace Routes {
     message_queue_provider = new MessageQueueProvider(environment.args());
 
     const channelTag = new Environment().args().mqArgs
-      ?.basicInfoServerMessageQueueChannel as string;
+      ?.businessLogicServerMessageQueueChannel as string;
     message_queue_provider.getChannel(channelTag).then((channel: any) => {
-      const basicInfoQueueConsumer = new BasicInfoQueueConsumer(channel);
+      const businessLogicQueueConsumer = new BusinessLogicQueueConsumer(channel);
       message_queue_provider.consume(
         channel,
         channelTag,
-        basicInfoQueueConsumer.onMessage,
+        businessLogicQueueConsumer.onMessage,
         1
       );
     });

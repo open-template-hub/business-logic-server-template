@@ -1,6 +1,6 @@
-import { BasicActionType } from '@open-template-hub/common';
+import { BusinessLogicActionType } from '@open-template-hub/common';
 
-export class BasicInfoQueueConsumer {
+export class BusinessLogicQueueConsumer {
   constructor(private channel: any) {}
 
   onMessage = async (msg: any) => {
@@ -8,14 +8,14 @@ export class BasicInfoQueueConsumer {
       const msgStr = msg.content.toString();
       const msgObj = JSON.parse(msgStr);
 
-      const message: BasicActionType = msgObj.message;
+      const message: BusinessLogicActionType = msgObj.message;
 
       // Decide requeue in the error handling
       let requeue = false;
 
       if (message.example) {
         var exampleHook = async () => {
-          console.log('Basic Info server example');
+          console.log('Business Logic server example');
         };
 
         await this.operate(msg, msgObj, requeue, exampleHook);

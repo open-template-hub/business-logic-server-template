@@ -1,12 +1,12 @@
 {
-  "name": "Basic Info Server Template",
-  "description": "Basic Info Server Template for generic usage in Node.js",
-  "repository": "https://github.com/open-template-hub/basic-info-server-template",
+  "name": "Business Logic Server Template",
+  "description": "Business Logic Server Template for generic usage in Node.js",
+  "repository": "https://github.com/open-template-hub/business-logic-server-template",
   "logo": "https://raw.githubusercontent.com/open-template-hub/open-template-hub.github.io/master/assets/logo/brand-logo.png",
   "keywords": [
     "info",
     "information",
-    "basic-info",
+    "business-logic",
     "mongo",
     "mongodb",
     "mongoose",
