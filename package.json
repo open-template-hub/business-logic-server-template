@@ -7,7 +7,8 @@
   "scripts": {
     "start": "ts-node business-logic-server.main.ts",
     "startLocal": "nodemon --exec DEBUG=* ts-node business-logic-server.main.ts",
-    "postmanDevelop": "newman run ./assets/tests/regression-tests/postman/business-logic-server-regression.postman_collection.json -e ./assets/tests/regression-tests/postman/business-logic-server-regression.postman_environment.json -r htmlextra --reporter-htmlextra-export ./assets/test-results/postman.html --reporter-htmlextra-darkTheme  > ./assets/test-results/postman-dark.html"
+    "postmanDevelop": "newman run ./assets/tests/regression-tests/postman/business-logic-server-regression.postman_collection.json -e ./assets/tests/regression-tests/postman/business-logic-server-regression.postman_environment.json -r htmlextra --reporter-htmlextra-export ./assets/test-results/postman.html --reporter-htmlextra-darkTheme  > ./assets/test-results/postman-dark.html",
+    "outdated": "node dependency-checker.ts > docs/OUTDATED.md"
   },
   "dependencies": {
     "@open-template-hub/common": "^2.1.15",
