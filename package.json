@@ -1,6 +1,6 @@
 {
   "name": "business-logic-server-template",
-  "description": "Business Logic Server Template is a generic open source server that encodes the real-world business rules that determine how data can be created, stored, and changed. It saves you from rewriting boilerplate code. It works best with other Open Template Hub products.",
+  "description": "Business Logic Server Template is a generic open-source server that encodes the real-world business rules that determine how data can be created, stored, and changed. It saves you from rewriting boilerplate code. It works best with other Open Template Hub products.",
   "version": "3.0.1",
   "license": "MIT",
   "main": "business-logic-server.main.ts",

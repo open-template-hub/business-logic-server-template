@@ -1,0 +1,23 @@
+{
+  "name": "business-logic-server-template",
+  "description": "Business Logic Server Template is a generic open-source server that encodes the real-world business rules that determine how data can be created, stored, and changed. It saves you from rewriting boilerplate code. It works best with other Open Template Hub products.",
+  "website": "https://opentemplatehub.com/product/server/business-logic-server-template",
+  "repository": "https://github.com/open-template-hub/business-logic-server-template",
+  "logo": "https://raw.githubusercontent.com/open-template-hub/open-template-hub.github.io/master/assets/logo/server/business-logic-server-logo.png",
+  "keywords": [
+    "info",
+    "information",
+    "business-logic",
+    "mongo",
+    "mongodb",
+    "mongoose",
+    "backend",
+    "rest",
+    "node",
+    "nodejs",
+    "typescript",
+    "template",
+    "server template",
+    "open template hub"
+  ]
+}
