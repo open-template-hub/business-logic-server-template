@@ -43,7 +43,7 @@ export class ProductRepository {
    */
   getProductById = async ( product_id: string ) => {
     try {
-      return await this.dataModel.find( { product_id } );
+      return await this.dataModel.findOne( { product_id } );
     } catch ( error ) {
       console.error( '> getProductById error: ', error );
       throw error;
