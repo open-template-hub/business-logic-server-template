@@ -1,6 +1,6 @@
 {
   "name": "business-logic-server-template",
-  "description": "Business Logic Server Template for generic usage in Node.js",
+  "description": "Business Logic Server Template is a generic open-source server that encodes the real-world business rules that determine how data can be created, stored, and changed. It saves you from rewriting boilerplate code. It works best with other Open Template Hub products.",
   "version": "3.0.1",
   "license": "MIT",
   "main": "business-logic-server.main.ts",
@@ -11,22 +11,21 @@
     "outdated": "node dependency-checker.ts > docs/OUTDATED.md"
   },
   "dependencies": {
-    "@open-template-hub/common": "^2.1.15",
+    "@open-template-hub/common": "^3.0.3",
     "@types/cors": "^2.8.9",
-    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.6",
     "@types/mongoose": "^5.5.34",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.19.1",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-promise-router": "^3.0.3",
-    "mongoose": "^5.8.2",
-    "ts-node": "^8.1.0",
-    "typescript": "^3.4.5"
+    "express-promise-router": "^4.1.1",
+    "mongoose": "^6.1.1",
+    "ts-node": "^10.3.0",
+    "typescript": "^4.5.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.15"
   },
   "git repository": "https://github.com/open-template-hub/business-logic-server-template",
   "repository": {

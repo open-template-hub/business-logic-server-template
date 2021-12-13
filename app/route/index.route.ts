@@ -39,7 +39,7 @@ export namespace Routes {
   let mongodb_provider: MongoDbProvider;
   var message_queue_provider: MessageQueueProvider;
   let environment: Environment;
-  const errorHandlerUtil = new ErrorHandlerUtil();
+  let errorHandlerUtil: ErrorHandlerUtil;
   const debugLogUtil = new DebugLogUtil();
   let publicRoutes: string[] = [];
   let adminRoutes: string[] = [];
@@ -55,6 +55,7 @@ export namespace Routes {
 
   export const mount = (app: any) => {
     environment = new Environment();
+    errorHandlerUtil = new ErrorHandlerUtil( debugLogUtil, environment.args() );
     mongodb_provider = new MongoDbProvider(environment.args());
     const preloadUtil = new PreloadUtil();
 

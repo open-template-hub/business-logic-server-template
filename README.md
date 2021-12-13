@@ -5,7 +5,7 @@
 </p>
 
 <h1 align="center">
-Open Template Hub - Business Logic Server Template v2
+Open Template Hub - Business Logic Server Template v3
 </h1>
 
 [![License](https://img.shields.io/github/license/open-template-hub/business-logic-server-template?color=43b043&style=for-the-badge)](LICENSE)
@@ -14,9 +14,8 @@ Open Template Hub - Business Logic Server Template v2
 [![LastCommit](https://img.shields.io/github/last-commit/open-template-hub/business-logic-server-template?color=43b043&style=for-the-badge)](https://github.com/open-template-hub/business-logic-server-template/commits/master)
 [![Release](https://img.shields.io/github/release/open-template-hub/business-logic-server-template?include_prereleases&color=43b043&style=for-the-badge)](https://github.com/open-template-hub/business-logic-server-template/releases)
 [![SonarCloud](https://img.shields.io/sonar/quality_gate/open-template-hub_business-logic-server-template?server=https%3A%2F%2Fsonarcloud.io&label=Sonar%20Cloud&style=for-the-badge&logo=sonarcloud)](https://sonarcloud.io/dashboard?id=open-template-hub_business-logic-server-template)
-[![BTC](https://img.shields.io/badge/Donate-BTC-ORANGE?color=F5922F&style=for-the-badge&logo=bitcoin)](https://commerce.coinbase.com/checkout/8313af5f-de48-498d-b2cb-d98819ca7d5e)
 
-Business Logic Server Template for generic usage in Node.js
+Business Logic Server Template is a generic open-source server that encodes the real-world business rules that determine how data can be created, stored, and changed. It saves you from rewriting boilerplate code. It works best with other Open Template Hub products.
 
 ## Ways to Begin
 
