@@ -1,7 +1,20 @@
-import { BusinessLogicActionType } from '@open-template-hub/common';
+import {
+  BusinessLogicActionType,
+  ContextArgs,
+  QueueConsumer,
+} from '@open-template-hub/common';
 
-export class BusinessLogicQueueConsumer {
-  constructor(private channel: any) {}
+export class BusinessLogicQueueConsumer implements QueueConsumer {
+  private channel: any;
+  private ctxArgs: ContextArgs = {} as ContextArgs;
+
+  constructor() {}
+
+  init = (channel: string, ctxArgs: ContextArgs) => {
+    this.channel = channel;
+    this.ctxArgs = ctxArgs;
+    return this;
+  };
 
   onMessage = async (msg: any) => {
     if (msg !== null) {
