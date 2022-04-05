@@ -24,7 +24,7 @@ export class NotificationRepository {
    */
   getNotificationsByUsername = async ( username: string ) => {
     try {
-      return await this.dataModel.find( { username } );
+      return await this.dataModel.find( { username } ).sort({timestamp: -1});
     } catch ( error ) {
       console.error( '> getNotificationsByUsername error: ', error );
       throw error;
