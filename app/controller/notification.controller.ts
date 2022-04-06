@@ -4,9 +4,10 @@
 
 import {
   Context,
-  DefaultNotificationParams,
   MessageQueueChannelType,
   MessageQueueProvider,
+  MongoDbProvider,
+  NotificationParams,
   OrchestrationActionType,
   QueueMessage
 } from '@open-template-hub/common';
@@ -38,18 +39,19 @@ export class NotificationController {
 
   /**
    * creates notification
-   * @param context context
+   * @param mongodb_provider
+   * @param message_queue_provider
    * @param notification notification
    * @returns created notification
    */
-  createNotification = async ( context: Context, notification: Notification ) => {
+  createNotification = async ( mongodb_provider: MongoDbProvider, message_queue_provider: MessageQueueProvider, notification: Notification ) => {
     const notificationRepository = await new NotificationRepository().initialize(
-        context.mongodb_provider.getConnection()
+        mongodb_provider.getConnection()
     );
 
     const response = notificationRepository.createNotification( notification );
 
-    await this.sendNotificationToQueue( context.message_queue_provider, notification );
+    await this.sendNotificationToQueue( message_queue_provider, notification );
 
     return response;
   };
@@ -76,19 +78,18 @@ export class NotificationController {
     const orchestrationChannelTag =
         this.environment.args().mqArgs?.orchestrationServerMessageQueueChannel;
 
-    const defaultNotificationParams = {
+    const notificationParams = {
+      timestamp: notification.timestamp,
       username: notification.username,
       message: notification.message
-    } as DefaultNotificationParams;
+    } as NotificationParams;
 
     const message = {
       sender: MessageQueueChannelType.BUSINESS_LOGIC,
       receiver: MessageQueueChannelType.ORCHESTRATION,
       message: {
-        notificationType: {
-          default: {
-            params: defaultNotificationParams,
-          }
+        pushNotification: {
+          params: notificationParams
         },
       } as OrchestrationActionType,
     } as QueueMessage;

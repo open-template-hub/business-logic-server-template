@@ -1,10 +1,18 @@
-import { BusinessLogicActionType, ContextArgs, QueueConsumer, } from '@open-template-hub/common';
+import {
+  BusinessLogicActionType,
+  ContextArgs,
+  MessageQueueProvider,
+  MongoDbProvider,
+  NotificationParams,
+  QueueConsumer,
+} from '@open-template-hub/common';
+import { NotificationController } from '../controller/notification.controller';
 
 export class BusinessLogicQueueConsumer implements QueueConsumer {
   private channel: any;
   private ctxArgs: ContextArgs = {} as ContextArgs;
 
-  constructor() {
+  constructor( private notificationController = new NotificationController() ) {
   }
 
   init = ( channel: string, ctxArgs: ContextArgs ) => {
@@ -23,15 +31,32 @@ export class BusinessLogicQueueConsumer implements QueueConsumer {
       // Decide requeue in the error handling
       let requeue = false;
 
-      if ( message.example ) {
-        const exampleHook = async () => {
-          console.log( 'Business Logic server example' );
-        };
+      let params: NotificationParams;
 
-        await this.operate( msg, msgObj, requeue, exampleHook );
-      } else {
-        console.log( 'Message will be rejected: ', msgObj );
-        this.channel.reject( msg, false );
+      if ( message ) {
+
+        if ( message.notification ) {
+          params = message.notification.params;
+        } else {
+          console.log( 'Message will be rejected: ', msgObj );
+          this.channel.reject( msg, false );
+          return;
+        }
+
+        if ( params ) {
+          let hook = async () => {
+            await this.notificationController.createNotification(
+                this.ctxArgs.mongodb_provider as MongoDbProvider,
+                this.ctxArgs.message_queue_provider as MessageQueueProvider,
+                {
+                  username: params.username,
+                  message: params.message,
+                  timestamp: params.timestamp
+                } );
+          };
+
+          await this.operate( msg, msgObj, requeue, hook );
+        }
       }
     }
   };

@@ -3,10 +3,16 @@
  */
 
 import { Context } from '@open-template-hub/common';
+import { Environment } from '../../environment';
 import { User } from '../interface/user.interface';
 import { UserRepository } from '../repository/user.repository';
 
 export class UserController {
+
+  constructor( private environment = new Environment() ) {
+    // Intentionally blank
+  }
+
   /**
    * gets all users
    * @param context context
