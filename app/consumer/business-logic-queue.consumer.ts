@@ -43,7 +43,7 @@ export class BusinessLogicQueueConsumer implements QueueConsumer {
           return;
         }
 
-        if ( params && params.username && params.message && params.timestamp ) {
+        if ( params?.username && params?.message && params?.timestamp ) {
           let hook = async () => {
             await this.notificationController.createNotification(
                 this.ctxArgs.mongodb_provider as MongoDbProvider,
