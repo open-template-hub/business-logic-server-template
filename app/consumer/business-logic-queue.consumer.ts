@@ -33,30 +33,26 @@ export class BusinessLogicQueueConsumer implements QueueConsumer {
 
       let params: NotificationParams;
 
-      if ( message ) {
+      if ( message?.notification?.params?.username && message?.notification?.params?.message && message?.notification?.params?.timestamp ) {
 
-        if ( message.notification ) {
-          params = message.notification.params;
-        } else {
-          console.log( 'Message will be rejected: ', msgObj );
-          this.channel.reject( msg, false );
-          return;
-        }
+        params = message.notification.params;
 
-        if ( params?.username && params?.message && params?.timestamp ) {
-          let hook = async () => {
-            await this.notificationController.createNotification(
-                this.ctxArgs.mongodb_provider as MongoDbProvider,
-                this.ctxArgs.message_queue_provider as MessageQueueProvider,
-                {
-                  username: params.username,
-                  message: params.message,
-                  timestamp: params.timestamp
-                } );
-          };
+        let hook = async () => {
+          await this.notificationController.createNotification(
+              this.ctxArgs.mongodb_provider as MongoDbProvider,
+              this.ctxArgs.message_queue_provider as MessageQueueProvider,
+              {
+                username: params.username,
+                message: params.message,
+                timestamp: params.timestamp
+              } );
+        };
 
-          await this.operate( msg, msgObj, requeue, hook );
-        }
+        await this.operate( msg, msgObj, requeue, hook );
+      } else {
+        console.log( 'Message will be rejected: ', msgObj );
+        this.channel.reject( msg, false );
+        return;
       }
     }
   };
