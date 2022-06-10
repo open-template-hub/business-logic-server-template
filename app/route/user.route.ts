@@ -16,6 +16,7 @@ const subRoutes = {
   me: '/me',
   search: '/search',
   public: '/public',
+  other: '/other'
 };
 
 export const router = Router();
@@ -165,3 +166,28 @@ router.delete(
       res.status( ResponseCode.OK ).json( user );
     }
 );
+
+router.get(
+  subRoutes.other,
+  authorizedBy( [UserRole.ADMIN ]),
+  async(req: Request, res: Response) => {
+    const context = res.locals.ctx;
+    const userController = new UserController();
+    let user = await userController.getUser(context, req.query.username as string);
+    res.status(ResponseCode.OK).json(user);
+  }
+)
+
+router.put(
+  subRoutes.other,
+  authorizedBy( [UserRole.ADMIN]),
+  async(req: Request, res: Response) => {
+    const context = res.locals.ctx;
+    const userController = new UserController();
+    let user = await userController.updateUser( context, {
+      username: req.body.username,
+      payload: req.body.payload,
+    } as User );
+    res.status( ResponseCode.OK ).json( user );
+  }
+)

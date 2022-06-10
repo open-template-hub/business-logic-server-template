@@ -13,7 +13,6 @@ import {
 import { Environment } from '../../environment';
 import { BusinessLogicQueueConsumer } from '../consumer/business-logic-queue.consumer';
 import { router as monitorRouter } from './monitor.route';
-import { router as productRouter } from './product.route';
 import { router as userRouter } from './user.route';
 import { router as notificationRouter } from './notification.route';
 
@@ -49,7 +48,6 @@ export namespace Routes {
 
     routes.push({ name: subRoutes.monitor, router: monitorRouter });
     routes.push( { name: subRoutes.user, router: userRouter } );
-    routes.push({ name: subRoutes.product, router: productRouter });
     routes.push({ name: subRoutes.notification, router: notificationRouter });
 
     const routeArgs = { routes } as RouteArgs;

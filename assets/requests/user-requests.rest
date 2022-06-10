@@ -71,3 +71,20 @@ Authorization: Bearer token
 DELETE http://localhost:4002/user/me
 Content-Type: application/json
 Authorization: Bearer token
+
+### Get Me (ADMIN)
+GET http://localhost:4002/user/other
+Authorization: Bearer token
+
+### Update Other (ADMIN)
+PUT http://localhost:4002/user/other
+Content-Type: application/json
+Authorization: Bearer token
+
+{
+  "username": "username",
+  "payload": {
+    "firstName": "First",
+    "lastName": "Last"
+  }
+}
