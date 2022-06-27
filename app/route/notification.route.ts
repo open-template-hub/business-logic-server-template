@@ -15,7 +15,7 @@ const subRoutes = {
 export const router = Router();
 
 router.get( subRoutes.me, authorizedBy( [ UserRole.ADMIN, UserRole.DEFAULT ] ),
-    async ( req: Request, res: Response ) => {
+    async ( _req: Request, res: Response ) => {
       const context = res.locals.ctx;
 
       // Get my notifications

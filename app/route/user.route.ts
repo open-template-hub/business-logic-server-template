@@ -5,9 +5,7 @@
 import { authorizedBy, ResponseCode, UserRole, } from '@open-template-hub/common';
 import { Request, Response } from 'express';
 import Router from 'express-promise-router';
-import { NotificationController } from '../controller/notification.controller';
 import { UserController } from '../controller/user.controller';
-import { Notification } from '../interface/notification.interface';
 import { User } from '../interface/user.interface';
 
 const subRoutes = {
@@ -60,7 +58,7 @@ router.get( subRoutes.search, async ( req: Request, res: Response ) => {
 router.get(
     subRoutes.all,
     authorizedBy( [ UserRole.ADMIN ] ),
-    async ( req: Request, res: Response ) => {
+    async ( _req: Request, res: Response ) => {
       // GET endpoint to get all users, this is for admin usage,
       // you should add admin rights on context level
       const userController = new UserController();
@@ -115,7 +113,7 @@ router.delete(
 router.get(
     subRoutes.me,
     authorizedBy( [ UserRole.ADMIN, UserRole.DEFAULT ] ),
-    async ( req: Request, res: Response ) => {
+    async ( _req: Request, res: Response ) => {
       // Get a single User detail
       const context = res.locals.ctx;
       const userController = new UserController();
@@ -158,7 +156,7 @@ router.put(
 router.delete(
     subRoutes.me,
     authorizedBy( [ UserRole.ADMIN, UserRole.DEFAULT ] ),
-    async ( req: Request, res: Response ) => {
+    async ( _req: Request, res: Response ) => {
       // Delete a User
       const context = res.locals.ctx;
       const userController = new UserController();

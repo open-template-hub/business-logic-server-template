@@ -17,10 +17,10 @@ import { NotificationRepository } from '../repository/notification.repository';
 
 export class NotificationController {
 
-  constructor(
-      private environment = new Environment()
-  ) {
-    // intentionally blank
+  environment: Environment;
+
+  constructor() {
+    this.environment = new Environment();
   }
 
   /**

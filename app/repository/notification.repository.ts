@@ -54,7 +54,7 @@ export class NotificationRepository {
    */
   updateNotification = async ( id: any, username: string, read: boolean ) => {
     try {
-      const a = await this.dataModel.findOne( { username, _id: id } );
+      await this.dataModel.findOne( { username, _id: id } );
       return await this.dataModel.findOneAndUpdate(
           { username, _id: id },
           { read },
