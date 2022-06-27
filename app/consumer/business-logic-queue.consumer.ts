@@ -9,10 +9,13 @@ import {
 import { NotificationController } from '../controller/notification.controller';
 
 export class BusinessLogicQueueConsumer implements QueueConsumer {
+
   private channel: any;
   private ctxArgs: ContextArgs = {} as ContextArgs;
+  private notificationController: NotificationController;
 
-  constructor( private notificationController = new NotificationController() ) {
+  constructor() {
+    this.notificationController = new NotificationController();
   }
 
   init = ( channel: string, ctxArgs: ContextArgs ) => {
