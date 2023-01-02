@@ -10,4 +10,5 @@ export interface Notification {
   category: string;
   image?: string;
   read?: boolean;
+  payload?: any;
 }

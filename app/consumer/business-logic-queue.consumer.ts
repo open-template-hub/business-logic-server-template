@@ -50,7 +50,8 @@ export class BusinessLogicQueueConsumer implements QueueConsumer {
                 timestamp: params.timestamp,
                 sender: params.sender,
                 category: params.category,
-                image: params.image
+                image: params.image,
+                payload: params.payload
               } );
         };
 

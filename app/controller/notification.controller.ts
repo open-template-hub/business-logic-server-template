@@ -81,7 +81,8 @@ export class NotificationController {
     const notificationParams = {
       timestamp: notification.timestamp,
       username: notification.username,
-      message: notification.message
+      message: notification.message,
+      payload: notification.payload
     } as NotificationParams;
 
     const message = {
