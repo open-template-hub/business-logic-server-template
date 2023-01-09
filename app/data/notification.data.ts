@@ -17,6 +17,10 @@ export class NotificationDataModel {
       message: { type: String },
       read: { type: Boolean, required: true, default: false },
       timestamp: { type: Number, required: true },
+      sender: { type: String, required: true },
+      category: { type: String, required: true },
+      image: { type: String },
+      payload: { type: Object },
     };
 
     this.dataSchema = new mongoose.Schema( schema );

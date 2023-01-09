@@ -6,5 +6,9 @@ export interface Notification {
   username: string;
   message: string;
   timestamp: number;
+  sender: string;
+  category: string;
+  image?: string;
   read?: boolean;
+  payload?: any;
 }

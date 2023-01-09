@@ -47,7 +47,11 @@ export class BusinessLogicQueueConsumer implements QueueConsumer {
               {
                 username: params.username,
                 message: params.message,
-                timestamp: params.timestamp
+                timestamp: params.timestamp,
+                sender: params.sender,
+                category: params.category,
+                image: params.image,
+                payload: params.payload
               } );
         };
 
