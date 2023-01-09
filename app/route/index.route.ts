@@ -2,19 +2,12 @@
  * @description holds index routes
  */
 
-import {
-  ContextArgs,
-  MountArgs,
-  MountAssets,
-  Route,
-  RouteArgs,
-  mount as mountApp,
-} from '@open-template-hub/common';
+import { ContextArgs, mount as mountApp, MountArgs, MountAssets, Route, RouteArgs, } from '@open-template-hub/common';
 import { Environment } from '../../environment';
 import { BusinessLogicQueueConsumer } from '../consumer/business-logic-queue.consumer';
 import { router as monitorRouter } from './monitor.route';
-import { router as userRouter } from './user.route';
 import { router as notificationRouter } from './notification.route';
+import { router as userRouter } from './user.route';
 
 const subRoutes = {
   root: '/',
@@ -25,7 +18,7 @@ const subRoutes = {
 };
 
 export namespace Routes {
-  export const mount = (app: any) => {
+  export const mount = ( app: any ) => {
     const envArgs = new Environment().args();
 
     const ctxArgs = {
@@ -39,16 +32,16 @@ export namespace Routes {
 
     const assets = {
       mqChannelTag: envArgs.mqArgs
-        ?.businessLogicServerMessageQueueChannel as string,
+          ?.businessLogicServerMessageQueueChannel as string,
       queueConsumer: new BusinessLogicQueueConsumer(),
       applicationName: 'BusinessLogicServer',
     } as MountAssets;
 
     const routes: Array<Route> = [];
 
-    routes.push({ name: subRoutes.monitor, router: monitorRouter });
+    routes.push( { name: subRoutes.monitor, router: monitorRouter } );
     routes.push( { name: subRoutes.user, router: userRouter } );
-    routes.push({ name: subRoutes.notification, router: notificationRouter });
+    routes.push( { name: subRoutes.notification, router: notificationRouter } );
 
     const routeArgs = { routes } as RouteArgs;
 
@@ -59,6 +52,6 @@ export namespace Routes {
       assets,
     } as MountArgs;
 
-    mountApp(args);
+    mountApp( args );
   };
 }
