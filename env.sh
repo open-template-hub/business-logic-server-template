@@ -19,6 +19,9 @@ if [ ! -f .env ]; then
     echo "BUSINESS_LOGIC_SERVER_QUEUE_CHANNEL=oth_business_logic_queue"
     echo "ORCHESTRATION_SERVER_QUEUE_CHANNEL=oth_orchestration_queue"
 
+    echo "REDISCLOUD_URL={Redis Connection Url}"
+    echo "REDIS_CONNECTION_LIMIT={Redis Connection Limit}"
+
     echo "ACCESS_TOKEN_SECRET={Access Token Secret}"
     echo "RESPONSE_ENCRYPTION_SECRET={Response Encryption Secret}"
 
