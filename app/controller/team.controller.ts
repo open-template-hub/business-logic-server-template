@@ -7,13 +7,12 @@ import {
   MongoDbProvider,
   NotificationParams,
   QueueMessage,
-  TeamRole,
-  TeamAuthInterface
+  TeamRole
 } from '@open-template-hub/common';
 import { Environment } from '../../environment';
 import { TeamRepository } from '../repository/team.repository';
 
-export class TeamController implements TeamAuthInterface {
+export class TeamController {
   constructor(
       private environment = new Environment()
   ) {
