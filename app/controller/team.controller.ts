@@ -111,7 +111,7 @@ export class TeamController {
         context.message_queue_provider,
         origin,
         {
-          username: username ?? email,
+          username: username,
           email: email
         },
         {
@@ -249,7 +249,7 @@ export class TeamController {
       messageQueueProvider: MessageQueueProvider,
       origin: string,
       targetUser: {
-        username: string,
+        username: string | undefined,
         email: string
       },
       targetTeam: {
@@ -262,13 +262,9 @@ export class TeamController {
 
     const joinTeamParams = {
       user: targetUser.username,
-      userLinkName: targetUser.username,
       email: targetUser.email,
-      teamId: targetTeam.teamId,
       teamName: targetTeam.teamName,
-      teamLinkName: targetTeam.teamName,
-      teamRole: targetTeam.teamRole,
-      joinTeamUrl: origin + '/callback/join-team'
+      joinTeamUrl: origin + `/callback/join-team?team-id=${ targetTeam.teamId }&team-name=${ targetTeam.teamName }&user-mail=${ targetUser.email }&username=${ targetUser.username }`
     } as JoinTeamMailActionParams;
 
     const message = {
