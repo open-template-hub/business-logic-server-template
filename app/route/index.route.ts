@@ -15,6 +15,7 @@ import { BusinessLogicQueueConsumer } from '../consumer/business-logic-queue.con
 import { router as monitorRouter } from './monitor.route';
 import { router as notificationRouter } from './notification.route';
 import { router as userRouter } from './user.route';
+import { router as teamRouter } from './team.route';
 
 const subRoutes = {
   root: '/',
@@ -22,6 +23,7 @@ const subRoutes = {
   user: '/user',
   product: '/product',
   notification: '/notification',
+  team: '/team'
 };
 
 export namespace Routes {
@@ -50,6 +52,7 @@ export namespace Routes {
     routes.push({ name: subRoutes.monitor, router: monitorRouter });
     routes.push({ name: subRoutes.user, router: userRouter });
     routes.push({ name: subRoutes.notification, router: notificationRouter });
+    routes.push({ name: subRoutes.team, router: teamRouter });
 
     const routeArgs = { routes } as RouteArgs;
 
