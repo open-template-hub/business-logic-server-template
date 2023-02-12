@@ -64,8 +64,6 @@ router.delete( subRoutes.root, authorizedBy( [ UserRole.ADMIN, UserRole.DEFAULT 
 router.post( subRoutes.member, authorizedBy( [ UserRole.ADMIN, UserRole.DEFAULT ] ), async ( req: Request, res: Response ) => {
   const teamController = new TeamController();
 
-  console.log(req.body)
-
   const addMemberResponse = await teamController.addMember(
       res.locals.ctx,
       req.query.origin as string,
